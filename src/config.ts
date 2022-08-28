@@ -7,6 +7,22 @@ export const SITE_BRAND_TC = "網東";
 
 export const SITE_TITLE = "My personal website.";
 export const SITE_DESCRIPTION = "Welcome to my website!";
+
+export const SITE_NAV = [
+  {
+    name: "首頁",
+    url: "/",
+  },
+  {
+    name: "關於",
+    url: "/about",
+  },
+  {
+    name: "文章",
+    url: "/post",
+  },
+];
+
 export const SITE_SOCIAL = [
   {
     name: "IG",
@@ -21,18 +37,5 @@ export const SITE_SOCIAL = [
     url: "https://www.behance.net/triangledongdong2020",
   },
 ];
-export const SITE_NAV = [
-  {
-    name: "Home",
-    url: "/",
-  },
-  {
-    name: "Blog",
-    url: "/blog",
-  },
-  {
-    name: "About",
-    url: "/about",
-  },
-];
+
 export const SITE_COPYRIGHT = `${SITE_BRAND}&trade;  All Right Reserved`;
