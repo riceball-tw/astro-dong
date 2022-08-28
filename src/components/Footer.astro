@@ -1,13 +1,11 @@
 ---
 const today = new Date();
+import {SITE_COPYRIGHT} from "@config"
 ---
 
 <footer>
-	&copy; {today.getFullYear()} YOUR NAME HERE. All rights reserved.
+	<span>
+		<Fragment set:html={SITE_COPYRIGHT}/>
+		<Fragment set:html={`Last Updated at ${today.getFullYear()}`}/>
+	</span>
 </footer>
-<style>
-	footer {
-		padding: 25px;
-		text-align: center;
-	}
-</style>

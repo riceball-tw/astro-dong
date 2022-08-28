@@ -10,10 +10,7 @@ import { SITE_TITLE, SITE_NAV } from "@config";
   </h2>
   <nav>
     {SITE_NAV.map(item => (
-      <NavbarLink href={item.href}>{item.name}</NavbarLink>
+      <NavbarLink href={item.url}>{item.name}</NavbarLink>
     ))}
   </nav>
 </header>
-<style>
-
-</style>

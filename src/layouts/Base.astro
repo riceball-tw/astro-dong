@@ -1,5 +1,6 @@
 ---
 import Head from "@components/Head.astro"
+import CSSRoot from "@components/CSSRoot.astro"
 ---
 
 <!DOCTYPE html>
@@ -7,9 +8,10 @@ import Head from "@components/Head.astro"
   <head>
     <slot name="head">
       <Head />
+      <CSSRoot/>
     </slot>
   </head>
-  <body>
+  <body class="bg-default text-default border-default">
       <slot />
   </body>
 </html>

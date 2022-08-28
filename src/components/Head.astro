@@ -1,15 +1,14 @@
 ---
 
 import '@styles/global.css';
-import { SITE_TITLE, SITE_NAV } from '@config';
+import { SITE_TITLE, SITE_DESCRIPTION } from '@config';
+
 
 export interface Props {
 	image?: string;
 }
 
 
-const title = SITE_TITLE
-const description = SITE_NAV
 const image = "/placeholder-social.jpg"
 
 ---
@@ -21,20 +20,20 @@ const image = "/placeholder-social.jpg"
 <meta name="generator" content={Astro.generator} />
 
 <!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
+<title>{SITE_TITLE}</title>
+<meta name="title" content={SITE_TITLE} />
+<meta name="description" content={SITE_DESCRIPTION} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
+<meta property="og:title" content={SITE_TITLE} />
+<meta property="og:description" content={SITE_DESCRIPTION} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
+<meta property="twitter:title" content={SITE_TITLE} />
+<meta property="twitter:description" content={SITE_DESCRIPTION} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />

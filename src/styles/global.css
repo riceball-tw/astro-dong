@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .bg-default {
+    @apply bg-white dark:bg-primary-800;
+  }
+
+  .text-default {
+    @apply text-primary-800 dark:text-primary-100;
+  }
+
+  .border-default {
+    @apply border-black dark:border-white;
+  }
+}
