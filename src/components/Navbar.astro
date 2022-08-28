@@ -1,0 +1,26 @@
+---
+import NavbarLink from "./NavbarLink.astro";
+import { SITE_TITLE } from "../config";
+---
+
+<header>
+  <h2>
+    <a href="/">
+      {SITE_TITLE}
+    </a>
+  </h2>
+  <nav>
+    <NavbarLink href="/">Home</NavbarLink>
+    <NavbarLink href="/blog">Blog</NavbarLink>
+    <NavbarLink href="/about">About</NavbarLink>
+    <!-- <NavbarLink href="https://twitter.com/astrodotbuild" target="_blank"
+      >Twitter</NavbarLink
+    >
+    <NavbarLink href="https://github.com/withastro/astro" target="_blank"
+      >GitHub</NavbarLink
+    > -->
+  </nav>
+</header>
+<style>
+
+</style>
