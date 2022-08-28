@@ -1,8 +1,7 @@
 ---
-import NavbarLink from "./NavbarLink.astro";
-import { SITE_TITLE } from "../config";
+import NavbarLink from "@components/NavbarLink.astro";
+import { SITE_TITLE, SITE_NAV } from "@config";
 ---
-
 <header>
   <h2>
     <a href="/">
@@ -10,15 +9,9 @@ import { SITE_TITLE } from "../config";
     </a>
   </h2>
   <nav>
-    <NavbarLink href="/">Home</NavbarLink>
-    <NavbarLink href="/blog">Blog</NavbarLink>
-    <NavbarLink href="/about">About</NavbarLink>
-    <!-- <NavbarLink href="https://twitter.com/astrodotbuild" target="_blank"
-      >Twitter</NavbarLink
-    >
-    <NavbarLink href="https://github.com/withastro/astro" target="_blank"
-      >GitHub</NavbarLink
-    > -->
+    {SITE_NAV.map(item => (
+      <NavbarLink href={item.href}>{item.name}</NavbarLink>
+    ))}
   </nav>
 </header>
 <style>

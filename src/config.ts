@@ -3,3 +3,17 @@
 
 export const SITE_TITLE = "My personal website.";
 export const SITE_DESCRIPTION = "Welcome to my website!";
+export const SITE_NAV = [
+  {
+    name: "Home",
+    href: "/",
+  },
+  {
+    name: "Blog",
+    href: "/blog",
+  },
+  {
+    name: "About",
+    href: "/about",
+  },
+];

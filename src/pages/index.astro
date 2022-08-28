@@ -1,18 +1,17 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Navbar from "../components/Navbar.astro";
-import Footer from "../components/Footer.astro";
+
+import Navbar from "@components/Navbar.astro";
+import Footer from "@components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import Base from "@layouts/Base.astro"
 ---
 
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Navbar title={SITE_TITLE} />
+<Base>
 
-    <Footer />
-  </body>
-</html>
+  <title slot="head">yee</title>
+
+  <Navbar title={SITE_TITLE} />
+  <Footer />
+</Base>
+
+
