@@ -6,7 +6,7 @@ export const SITE_BRAND_SHORT = "WD";
 export const SITE_BRAND_TC = "網東";
 
 export const SITE_TITLE = "My personal website.";
-export const SITE_DESCRIPTION = "Welcome to my website!";
+export const SITE_DESCRIPTION = "專注於用簡白好懂的方式來傳遞網頁開發與設計相關知識。更快的學習最新出爐的技術，更早的實踐夢想中的專案。";
 
 export const SITE_NAV = [
   {

@@ -1,11 +1,29 @@
 ---
 const today = new Date();
 import {SITE_COPYRIGHT} from "@config"
+import {SITE_SOCIAL} from "@config"
 ---
 
-<footer>
-	<span>
+<footer class="flex justify-between">
+	<span class="p-4">
 		<Fragment set:html={SITE_COPYRIGHT}/>
-		<Fragment set:html={`Last Updated at ${today.getFullYear()}`}/>
 	</span>
+	<!-- <span>
+		<Fragment set:html={`Last Updated at ${today.getFullYear()}．By Riceball`}/>
+	</span> -->
+
+	<div class="flex">
+		<ul>
+			{
+				SITE_SOCIAL.map(social => (
+					<li class="inline-block">
+						<a class="p-4 inline-block" href={social.url}>
+							{social.name}
+						</a>
+					</li>	
+				))
+			}
+		</ul>
+
+	</div>
 </footer>
