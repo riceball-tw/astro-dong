@@ -1,52 +1,65 @@
 ---
 import { SITE_DESCRIPTION } from "@config";
-import Base from "@layouts/Base.astro"
+import Base from "@layouts/Base.astro";
 import HeroBanner from "@components/HeroBanner.astro";
-import Card from "@components/Card.astro"
-const posts = await Astro.glob('../pages/post/*.{md,mdx}')
+import Card from "@components/Card.astro";
+import Button from "@components/Button.astro";
+const posts = await Astro.glob("../pages/post/*.{md,mdx}");
 ---
+
 <Base>
-   <HeroBanner>
-    <Fragment slot="title" set:html={SITE_DESCRIPTION}/>
-    <img slot="image" width="600" src="/img/hero-banner.svg" alt="">
+  <HeroBanner>
+    <Fragment slot="title" set:html={SITE_DESCRIPTION} />
+    <img slot="image" width="600" src="/img/hero-banner.svg" alt="" />
   </HeroBanner>
   <section class="px-4">
-    <div class="grid md:grid-cols-3 grid-cols-1 gap-8">
+    <div class="grid md:grid-cols-3 grid-cols-1 gap-4">
       <div>
-        <h2 class="sr-only">
-        近期文章
-        </h2>
+        <h2 class="sr-only">近期文章</h2>
         <Card>
           <p class="text-xl">
-          <svg class="mb-2 w-10 h-10 text-primary-500 dark:text-primary-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clip-rule="evenodd"></path><path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path></svg>
+            <svg
+              class="mb-2 w-10 h-10 text-primary-500 dark:text-primary-400"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+              ><path
+                fill-rule="evenodd"
+                d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z"
+                clip-rule="evenodd"></path><path
+                d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"
+              ></path>
+            </svg>
 
-            這個網站主要用途是我的個人行動知識庫，範圍涵蓋了設計思考、前端開發、現代程式設計……等議題。
-            <br>
-            <br>
-            非常歡迎您 <a class="underline" href="#">提供寶貴的意見</a>
+            我撰寫文章，範圍涵蓋了設計思考、前端開發、現代程式設計……等議題。
+            <br />
+            <br />
+            <Button href="#">非常歡迎您 提供寶貴的意見</Button>
           </p>
         </Card>
-      </div> 
-      <div class="col-span-2">
-        <ul class="space-y-8">
-          {posts.slice(0, 3).map(post => (
-            <li>
-              <Card>
-                <a href={"post/" + post.frontmatter.slug }>
+      </div>
+      <div class="col-span-2 overflow-x-hidden">
+        <ul class="flex gap-8 overflow-x-auto">
+          {
+            posts.slice(0, 3).map((post) => (
+              <li>
+                <Card>
                   <article>
-                    <h3 class="text-3xl mb-4">{post.frontmatter.titletc}</h3>
-                    <p>{post.frontmatter.description}</p>
-                    <time class="mt-8 inline-block">{post.frontmatter.date}</time>
-                    
+                    <a href={"post/" + post.frontmatter.slug}>
+                      <h3 class="text-2xl mb-4">{post.frontmatter.titletc}</h3>
+                    </a>
+                    <p class="text-sm">{post.frontmatter.description}</p>
+                    <time class="mt-8 inline-block">
+                      {post.frontmatter.date}
+                    </time>
                   </article>
-                </a>
-              </Card>
-            </li>
-          ))}
+                </Card>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>
   </section>
 </Base>
-
-

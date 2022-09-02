@@ -1,12 +1,21 @@
 ---
 export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
 
-const { href, class: className, ...props } = Astro.props;
+const { href, class: className, item, ...props } = Astro.props;
 const isActive = href === Astro.url.pathname;
+let isHome = "";
+if (item.url === "/") {
+  isHome = "md:block hidden";
+}
 ---
 
 <li class="inline-block flex-1">
-  <a href={href} class="w-full p-4 inline-block" class:list={[className, { isActive: isActive }]} {...props}>
+  <a
+    href={href}
+    class={`w-full p-4 inline-block ${isHome}`}
+    class:list={[className, { isActive: isActive }]}
+    {...props}
+  >
     <slot />
   </a>
 </li>
