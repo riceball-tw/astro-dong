@@ -3,14 +3,28 @@ import NavbarLink from "@components/NavbarLink.astro";
 import { SITE_BRAND, SITE_NAV } from "@config";
 ---
   <nav class="fixed bottom-0 left-0 flex items-center justify-between w-full sm:static">
-    <h2>
-      <a class="font-bold p-4" href="/">
-        {SITE_BRAND}
-      </a>
-    </h2>
-    <ul>
-      {SITE_NAV.map(item => (
-        <NavbarLink href={item.url}>{item.name}</NavbarLink>
-      ))}
-    </ul>
+    <div class="grid grid-cols-2 w-full">
+      <div>
+        <h2>
+          <a class="font-bold p-4 inline-block" href="/">
+            {SITE_BRAND}
+          </a>
+        </h2>
+      </div>
+      <div>
+        <ul class="flex text-right">
+          {SITE_NAV.map(item => (
+            <NavbarLink href={item.url}>{item.name}</NavbarLink>
+          ))}
+
+          <li class="inline-block flex-1">
+              <button onclick="alert('功能還沒作')" class="p-4 w-full inline-block">
+                <span class="float-right">
+                搜尋
+                </span>
+              </button>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>

@@ -8,6 +8,11 @@
     </linearGradient>
   </defs>
 	<style>
-    @media (prefers-color-scheme:dark){:root{filter:invert(100%)}}
+        path {
+            fill: black;
+        }
+        @media (prefers-color-scheme: dark) {
+            path { fill: white; }
+        }
   </style>
 </svg>

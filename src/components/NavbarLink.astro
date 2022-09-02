@@ -5,8 +5,8 @@ const { href, class: className, ...props } = Astro.props;
 const isActive = href === Astro.url.pathname;
 ---
 
-<li class="inline-block">
-  <a href={href} class="p-4 inline-block" class:list={[className, { isActive: isActive }]} {...props}>
+<li class="inline-block flex-1">
+  <a href={href} class="w-full p-4 inline-block" class:list={[className, { isActive: isActive }]} {...props}>
     <slot />
   </a>
 </li>

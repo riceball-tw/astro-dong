@@ -1,0 +1,18 @@
+---
+---
+<section class="grid grid-cols-1 md:grid-cols-2 items-center justify-between px-4 py-32">
+  <div>
+    <h1 class=" leading-normal md:leading-normal text-3xl md:text-4xl">
+      <slot name="title">
+      </slot>
+    </h1>
+    <div class="mt-24 text-lg">
+      <a class="underline" href="/about">關於網站</a>
+      <a class="underline" href="/post">文章清單</a>
+    </div>
+  </div>
+  <div class="flex justify-center">
+    <slot name="image">
+    </slot>
+  </div>
+</section>
