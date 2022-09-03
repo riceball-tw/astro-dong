@@ -1,7 +1,10 @@
 ---
-import Base from "@layouts/Base.astro"
+import Base from "@layouts/Base.astro";
+const title = "404 頁面";
+const description = "這個網頁並不存在";
 ---
-<Base>
+
+<Base title={title} , description={description}>
   <h1>This is 404 Page</h1>
   <a href="/">Go Home</a>
 </Base>

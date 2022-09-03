@@ -5,13 +5,14 @@ import PostCard from "@components/PostCard.astro";
 import PageBanner from "@components/Banner/PageBanner.astro";
 export async function getStaticPaths({ paginate }) {
   const posts = await Astro.glob("./*.{md,mdx}");
-  return paginate(posts, { pageSize: 2 });
+  return paginate(posts, { pageSize: 10 });
 }
 const { page } = Astro.props;
 const title = "測試";
+const description = "紀錄觀點、設計開發資源與教學筆記東東。";
 ---
 
-<Base>
+<Base title={title} description={description}>
   <PageBanner title={title} />
 
   <ul class="grid grid-cols-1 md:grid-cols-3 gap-4 mx-4">
