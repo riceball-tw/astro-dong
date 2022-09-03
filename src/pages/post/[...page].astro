@@ -5,10 +5,10 @@ import PostCard from "@components/PostCard.astro";
 import PageBanner from "@components/Banner/PageBanner.astro";
 export async function getStaticPaths({ paginate }) {
   const posts = await Astro.glob("./*.{md,mdx}");
-  return paginate(posts, { pageSize: 10 });
+  return paginate(posts, { pageSize: 20 });
 }
 const { page } = Astro.props;
-const title = "測試";
+const title = "所有文章";
 const description = "紀錄觀點、設計開發資源與教學筆記東東。";
 ---
 

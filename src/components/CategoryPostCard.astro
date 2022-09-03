@@ -1,0 +1,12 @@
+---
+import Card from "@components/Card.astro";
+const { category } = Astro.props;
+---
+
+<li>
+  <Card>
+    <article>
+      <a href={`/post/categories/${category.slug}`}>{category.name}</a>
+    </article>
+  </Card>
+</li>

@@ -1,13 +1,20 @@
 ---
 import Base from "@layouts/Base.astro";
 import HeroBanner from "@components/Banner/HeroBanner.astro";
-const title = "關於";
+const title =
+  "哈囉，我是宗瑋(Riceball)。<br> 目前主要擔任前端實習助教在六角學院上班。";
 const description = "關於我們";
 ---
 
 <Base title={title} description={description}>
-  <HeroBanner>
+  <HeroBanner title={title}>
     <Fragment slot="title" set:html={"About Page"} />
     <img slot="image" width="600" src="/img/hero-banner.svg" alt="" />
   </HeroBanner>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio iure, mollitia
+  quae nisi eum doloribus error eveniet totam, corrupti dolorum aspernatur magni
+  fuga aliquam! Libero fuga ex voluptas nesciunt porro! Lorem ipsum dolor sit amet
+  consectetur adipisicing elit. Iusto reiciendis repellat hic quis voluptas! Tenetur
+  sapiente voluptates, impedit quis nobis sit voluptas necessitatibus voluptatibus
+  perspiciatis vero suscipit repellendus excepturi maxime.
 </Base>

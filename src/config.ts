@@ -27,15 +27,15 @@ export const SITE_NAV = [
 export const SITE_SOCIAL = [
   {
     name: "IG",
-    url: "https://www.instagram.com/triangle_dongdong",
+    url: "https://www.instagram.com/",
   },
   {
     name: "YT",
-    url: "https://www.youtube.com/channel/UCIFYY0VUOND2tBdC2YDpKkQ",
+    url: "https://www.youtube.com/channel/",
   },
   {
     name: "BE",
-    url: "https://www.behance.net/triangledongdong2020",
+    url: "https://www.behance.net/",
   },
 ];
 

@@ -1,44 +1,45 @@
 ---
+import PageBanner from "@components/Banner/PageBanner.astro";
 import Base from "@layouts/Base.astro";
+import PostCard from "@components/PostCard.astro";
 import { generateCategoryData } from "src/utils/helpers";
 
-
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob('../*.{md,mdx}')
-  const allCategoriesUnique = new Set()
+  const allPosts = await Astro.glob("../*.{md,mdx}");
+  const allCategoriesUnique = new Set();
 
-  allPosts.map(post => {
-    post.frontmatter.category && post.frontmatter.category.map(category => {
-      allCategoriesUnique.add(category)
-    })
-  })
-  const allCategoriesData = generateCategoryData(allCategoriesUnique)
+  allPosts.map((post) => {
+    post.frontmatter.category &&
+      post.frontmatter.category.map((category) => {
+        allCategoriesUnique.add(category);
+      });
+  });
+  const allCategoriesData = generateCategoryData(allCategoriesUnique);
 
   return allCategoriesData.map((category) => {
     // filter the posts that match the given category
 
-    const posts = allPosts.filter((post) => post.frontmatter.category.includes(category.name))
-      return {
-      params: {slug: category.slug}, 
+    const posts = allPosts.filter((post) =>
+      post.frontmatter.category.includes(category.name)
+    );
+    return {
+      params: { slug: category.slug },
       props: {
-        category: category.name, 
-        posts: posts
-      }
+        category: category.name,
+        posts: posts,
+      },
     };
   });
 }
 
-const {category, posts} = Astro.props;
-
+const { category, posts } = Astro.props;
 ---
+
 <Base>
   <div>
-    <h1>test</h1>
+    <PageBanner title={category} />
     <ul>
-      {posts.map(post => (
-        <li><a href={post.url}>{post.frontmatter.title}</a></li>
-      ))}
+      {posts.map((post) => <PostCard post={post} />)}
     </ul>
   </div>
-
 </Base>
