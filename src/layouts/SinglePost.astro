@@ -6,19 +6,42 @@ const allCategoriesData = generateCategoryData(frontmatter.category);
 ---
 
 <Base>
-  <div class="bg-debug">
-    {
-      allCategoriesData.map((category) => (
-        <li>
-          <a href={`/post/categories/${category.slug}`}>{category.name}</a>
-        </li>
-      ))
-    }
-  </div>
-  <h1>{frontmatter.title} by {frontmatter.author}</h1>
   <main>
-    <article class="prose mx-auto">
-      <slot />
+    <article>
+      <header>
+        <img
+          class="mx-auto"
+          src="https://picsum.photos/1200/600"
+          width="1200"
+          height="600"
+          alt="test image"
+        />
+        <div class="prose dark:prose-invert mx-auto">
+          <!-- Heading -->
+          <h1>
+            <span class="text-xl font-normal">
+              {frontmatter.title}
+            </span>
+            <br />
+            {frontmatter.titletc}
+          </h1>
+          <!-- Category -->
+          <div>
+            {
+              allCategoriesData.map((category) => (
+                <li>
+                  <a href={`/post/categories/${category.slug}`}>
+                    {category.name}
+                  </a>
+                </li>
+              ))
+            }
+          </div>
+        </div>
+      </header>
+      <div class="prose dark:prose-invert mx-auto">
+        <slot />
+      </div>
     </article>
   </main>
   <p>Written on: {frontmatter.date}</p>

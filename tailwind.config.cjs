@@ -70,7 +70,7 @@ module.exports = {
       typography: ({ theme }) => ({
         primary: {
           css: {
-            "--tw-prose-body": theme("colors.primary[300]"),
+            "--tw-prose-body": "red",
             "--tw-prose-headings": theme("colors.primary[900]"),
             "--tw-prose-lead": theme("colors.primary[700]"),
             "--tw-prose-links": theme("colors.primary[900]"),

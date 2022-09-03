@@ -1,9 +1,10 @@
 ---
 import { SITE_DESCRIPTION } from "@config";
 import Base from "@layouts/Base.astro";
-import HeroBanner from "@components/HeroBanner.astro";
+import HeroBanner from "@components/Banner/HeroBanner.astro";
 import Card from "@components/Card.astro";
 import Button from "@components/Button.astro";
+import PostCard from "@components/PostCard.astro";
 const posts = await Astro.glob("../pages/post/*.{md,mdx}");
 ---
 
@@ -13,7 +14,7 @@ const posts = await Astro.glob("../pages/post/*.{md,mdx}");
     <img slot="image" width="600" src="/img/hero-banner.svg" alt="" />
   </HeroBanner>
   <section class="px-4">
-    <div class="grid md:grid-cols-3 grid-cols-1 gap-4">
+    <div class="grid md:grid-cols-4 grid-cols-1 gap-4">
       <div>
         <h2 class="sr-only">近期文章</h2>
         <Card>
@@ -39,33 +40,9 @@ const posts = await Astro.glob("../pages/post/*.{md,mdx}");
           </p>
         </Card>
       </div>
-      <div class="col-span-2 overflow-x-hidden">
-        <ul class="flex gap-8 overflow-x-auto">
-          {
-            posts.slice(0, 3).map((post) => (
-              <li>
-                <Card>
-                  <article>
-                    <a href={"post/" + post.frontmatter.slug}>
-                      <h3 class="text-2xl mb-4">{post.frontmatter.titletc}</h3>
-                    </a>
-                    <p class="text-sm">{post.frontmatter.description}</p>
-                    <time class="mt-8 inline-block">
-                      {post.frontmatter.date}
-                    </time>
-                    <ul>
-                      {post.frontmatter.tag.map((tag, index) => (
-                        <li class="inline-block">
-                          {index ? <div class="inline-block">．</div> : ""}
-                          <a href="#">{tag}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                </Card>
-              </li>
-            ))
-          }
+      <div class="col-span-3 overflow-x-hidden">
+        <ul class="flex gap-4 overflow-x-auto">
+          {posts.slice(0, 3).map((post) => <PostCard post={post} />)}
         </ul>
       </div>
     </div>
