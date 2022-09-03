@@ -1,10 +1,11 @@
 ---
-import Base from "@layouts/Base.astro"
-import HeroBanner from "@components/HeroBanner.astro"
+import Base from "@layouts/Base.astro";
+import HeroBanner from "@components/HeroBanner.astro";
 ---
 
 <Base>
   <HeroBanner>
-    <Fragment slot="title">This is About Page<Fragment/>
+    <Fragment slot="title" set:html={"About Page"} />
+    <img slot="image" width="600" src="/img/hero-banner.svg" alt="" />
   </HeroBanner>
 </Base>

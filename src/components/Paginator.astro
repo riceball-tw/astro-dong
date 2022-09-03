@@ -1,8 +1,8 @@
 ---
-  const {page} = Astro.props
+const { page } = Astro.props;
 ---
 
-  <div>
-    {page.url.prev && <a href={page.url.prev}>Prev</a>}
-    {page.url.next && <a href={page.url.next}>Next</a>}
-  </div>
+<div>
+  {page.url.prev && <a href={page.url.prev}>Prev</a>}
+  {page.url.next && <a href={page.url.next}>Next</a>}
+</div>

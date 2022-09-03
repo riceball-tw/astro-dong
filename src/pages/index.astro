@@ -53,6 +53,14 @@ const posts = await Astro.glob("../pages/post/*.{md,mdx}");
                     <time class="mt-8 inline-block">
                       {post.frontmatter.date}
                     </time>
+                    <ul>
+                      {post.frontmatter.tag.map((tag, index) => (
+                        <li class="inline-block">
+                          {index ? <div class="inline-block">．</div> : ""}
+                          <a href="#">{tag}</a>
+                        </li>
+                      ))}
+                    </ul>
                   </article>
                 </Card>
               </li>
