@@ -1,9 +1,10 @@
 ---
 import Base from "@layouts/Base.astro";
 import HeroBanner from "@components/Banner/HeroBanner.astro";
+const title = "關於";
 ---
 
-<Base>
+<Base title={title}>
   <HeroBanner>
     <Fragment slot="title" set:html={"About Page"} />
     <img slot="image" width="600" src="/img/hero-banner.svg" alt="" />

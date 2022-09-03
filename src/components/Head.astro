@@ -1,16 +1,15 @@
 ---
-
-import '@styles/global.css';
-import { SITE_TITLE, SITE_DESCRIPTION } from '@config';
-
+import "@styles/global.css";
+import { SITE_BRAND, SITE_SLOGAN, SITE_DESCRIPTION } from "@config";
 
 export interface Props {
-	image?: string;
+  image?: string;
 }
 
-
-const image = "/placeholder-social.jpg"
-
+const { title } = Astro.props;
+const SeoTitle = (title || SITE_SLOGAN) + ` - ${SITE_BRAND}`;
+const image = "/placeholder-social.jpg";
+console.log(title);
 ---
 
 <!-- Global Metadata -->
@@ -20,29 +19,33 @@ const image = "/placeholder-social.jpg"
 <meta name="generator" content={Astro.generator} />
 
 <!-- Primary Meta Tags -->
-<title>{SITE_TITLE}</title>
-<meta name="title" content={SITE_TITLE} />
+<title>{SeoTitle}</title>
+<meta name="title" content={SeoTitle} />
 <meta name="description" content={SITE_DESCRIPTION} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={SITE_TITLE} />
+<meta property="og:title" content={SeoTitle} />
 <meta property="og:description" content={SITE_DESCRIPTION} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={SITE_TITLE} />
+<meta property="twitter:title" content={SeoTitle} />
 <meta property="twitter:description" content={SITE_DESCRIPTION} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <script>
-	// On page load or when changing themes, best to add inline in `head` to avoid FOUC
-	if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-			document.documentElement.classList.add('dark');
-	} else {
-			document.documentElement.classList.remove('dark')
-	}
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
 </script>

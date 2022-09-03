@@ -9,9 +9,14 @@ const posts = await Astro.glob("../pages/post/*.{md,mdx}");
 ---
 
 <Base>
-  <HeroBanner>
-    <Fragment slot="title" set:html={SITE_DESCRIPTION} />
-    <img slot="image" width="600" src="/img/hero-banner.svg" alt="" />
+  <HeroBanner title={SITE_DESCRIPTION}>
+    <img
+      slot="image"
+      width="600"
+      height="600"
+      src="/images/hero-banner.svg"
+      alt=""
+    />
   </HeroBanner>
   <section class="px-4">
     <div class="grid md:grid-cols-4 grid-cols-1 gap-4">
