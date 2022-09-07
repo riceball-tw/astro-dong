@@ -1,25 +1,15 @@
 ---
 import Base from "@layouts/Base.astro";
-import PageBanner from "@components/Banner/PageBanner.astro";
-import removeTags from "@utils/removeTags";
-
+import HeroBanner from "@components/Banner/HeroBanner.astro";
+import removeHTMLTag from "@utils/removeHTMLTag";
 const title = "關於";
 const description = "關於我們";
 ---
 
 <Base title={title} description={description}>
-  <PageBanner
-    title="哈囉，我是 Riceball。 <br />目前主要在六角學院擔任前端實習助教。"
+  <HeroBanner
+    title="哈囉，我是宗瑋。 <br>目前主要在六角學院擔任前端實習助教與獨立接案。"
   >
     <img slot="image" width="600" src="/images/hero-banner.svg" alt="a" />
-  </PageBanner>
-  <div class="max-w-prose mx-4 text-xl">
-    <h2></h2>
-
-    <p>從很早以前就想要寫個自己的網站，在國中的時候。</p>
-    <p>如果你看到這篇文章就代表我終於成功了。</p>
-    <br />
-    在這四、五年期間我的學習都是依靠興趣前進的。
-    <br />
-  </div>
+  </HeroBanner>
 </Base>

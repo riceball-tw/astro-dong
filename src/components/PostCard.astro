@@ -7,6 +7,14 @@ const { post } = Astro.props;
   <Card>
     <article>
       <a href={post.url}>
+        {
+          // Emoji
+          post.frontmatter.emoji && (
+            <div class="text-4xl absolute top-0 left-0 transform-gpu -translate-y-1/2 translate-x-1/2">
+              {post.frontmatter.emoji}
+            </div>
+          )
+        }
         <h3 class="text-2xl mb-4">{post.frontmatter.titletc}</h3>
       </a>
       <p class="text-sm">{post.frontmatter.description}</p>
