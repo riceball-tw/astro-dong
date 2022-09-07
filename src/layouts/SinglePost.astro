@@ -1,11 +1,11 @@
 ---
 import Base from "@layouts/Base.astro";
-import { generateCategoryData } from "src/utils/helpers";
+import { generateCategoryData } from "@utils/generateCategoryData";
 const { frontmatter } = Astro.props;
 const allCategoriesData = generateCategoryData(frontmatter.category);
 ---
 
-<Base>
+<Base title={frontmatter.titletc}>
   <main>
     <article>
       <header>

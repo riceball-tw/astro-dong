@@ -2,12 +2,13 @@
 import PageBanner from "@components/Banner/PageBanner.astro";
 import Base from "@layouts/Base.astro";
 import PostCard from "@components/PostCard.astro";
-import { generateCategoryData } from "src/utils/helpers";
+import { generateCategoryData } from "@utils/generateCategoryData";
 
 export async function getStaticPaths() {
   const allPosts = await Astro.glob("../*.{md,mdx}");
   const allCategoriesUnique = new Set();
 
+  // Get every posts' category and put into allCategoriesUnique
   allPosts.map((post) => {
     post.frontmatter.category &&
       post.frontmatter.category.map((category) => {
@@ -35,7 +36,7 @@ export async function getStaticPaths() {
 const { category, posts } = Astro.props;
 ---
 
-<Base>
+<Base title={`搜尋分類：${category}`}>
   <div>
     <PageBanner title={category} />
     <ul>

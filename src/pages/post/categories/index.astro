@@ -2,7 +2,7 @@
 import PageBanner from "@components/Banner/PageBanner.astro";
 import CategoryPostCard from "@components/CategoryPostCard.astro";
 import Base from "@layouts/Base.astro";
-import { generateCategoryData } from "src/utils/helpers";
+import { generateCategoryData } from "@utils/generateCategoryData";
 const allPosts = await Astro.glob("../*.{md,mdx}");
 const allCategoriesUnique = new Set();
 allPosts.map((post) => {
@@ -13,10 +13,11 @@ allPosts.map((post) => {
 });
 
 const allCategoriesData = generateCategoryData(allCategoriesUnique);
+const title = "所有分類";
 ---
 
-<Base>
-  <PageBanner title="所有分類" />
+<Base title={title}>
+  <PageBanner title={title} } />
   <ul class="grid grid-cols-3">
     {
       allCategoriesData.map((category) => (

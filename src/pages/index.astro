@@ -3,13 +3,18 @@ import { SITE_DESCRIPTION } from "@config";
 import Base from "@layouts/Base.astro";
 import HeroBanner from "@components/Banner/HeroBanner.astro";
 import Card from "@components/Card.astro";
-import Button from "@components/Button.astro";
+import Button from "@components/Button/Button.astro";
+import ButtonGhost from "@components/Button/ButtonGhost.astro";
 import PostCard from "@components/PostCard.astro";
 const posts = await Astro.glob("../pages/post/*.{md,mdx}");
 ---
 
 <Base>
   <HeroBanner title={SITE_DESCRIPTION}>
+    <div slot="cta">
+      <Button href="#">關於</Button>
+      <ButtonGhost href="#">文章</ButtonGhost>
+    </div>
     <img
       slot="image"
       width="600"
