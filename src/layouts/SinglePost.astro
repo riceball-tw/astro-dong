@@ -5,7 +5,7 @@ const { frontmatter } = Astro.props;
 const allCategoriesData = generateCategoryData(frontmatter.category);
 ---
 
-<Base title={frontmatter.titletc}>
+<Base title={frontmatter.titletc} description={frontmatter.description}>
   <main>
     <article>
       <header>
@@ -44,6 +44,4 @@ const allCategoriesData = generateCategoryData(frontmatter.category);
       </div>
     </article>
   </main>
-  <p>Written on: {frontmatter.date}</p>
-  post layout
 </Base>

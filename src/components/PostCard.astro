@@ -3,9 +3,9 @@ import Card from "@components/Card.astro";
 const { post } = Astro.props;
 ---
 
-<li>
+<li class="max-w-[450px]">
   <Card>
-    <article>
+    <article class="pt-4">
       <a href={post.url}>
         {
           // Emoji
@@ -17,32 +17,44 @@ const { post } = Astro.props;
         }
         <h3 class="text-2xl mb-4">{post.frontmatter.titletc}</h3>
       </a>
+      <!-- Paragraph -->
       <p class="text-sm">{post.frontmatter.description}</p>
-      <time class="mt-8 inline-block">
-        {post.frontmatter.date}
-      </time>
-      <!-- Category -->
-      <ul>
-        {
-          post.frontmatter.category.map((tag, index) => (
-            <li class="inline-block">
-              {index ? <div class="inline-block">．</div> : ""}
-              <a href={`/post/categories/${tag}`}>{tag}</a>
-            </li>
-          ))
-        }
-      </ul>
-      <!-- Tag -->
-      <ul>
-        {
-          post.frontmatter.tag.map((tag, index) => (
-            <li class="inline-block">
-              {index ? <div class="inline-block">．</div> : ""}
-              <a href="#">{tag}</a>
-            </li>
-          ))
-        }
-      </ul>
+      <!-- Footer -->
+      <div class="flex justify-between items-center mt-8">
+        <!-- Time -->
+        <time class="inline-block">
+          {post.frontmatter.date}
+        </time>
+        <div>
+          <!-- Category -->
+          <ul class="inline-block">
+            {
+              post.frontmatter.category.map((tag, index) => (
+                <li class="inline-block opacity-80 hover:opacity-100">
+                  {index ? <div class="inline-block">．</div> : ""}
+                  <a href={`/post/categories/${tag}`}>{tag}</a>
+                </li>
+              ))
+            }
+          </ul>
+          <!-- Tag -->
+          <span>．</span>
+          <ul class="inline-block">
+            {
+              post.frontmatter.tag.map((tag, index) => (
+                <li class="inline-block opacity-80 hover:opacity-100">
+                  {index ? (
+                    <div class="inline-block ml-1.5 text-sm opacity-60">/</div>
+                  ) : (
+                    ""
+                  )}
+                  <a href="#">{tag}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
     </article>
   </Card>
 </li>

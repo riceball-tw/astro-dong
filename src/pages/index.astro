@@ -3,48 +3,73 @@ import { SITE_DESCRIPTION } from "@config";
 import Base from "@layouts/Base.astro";
 import HeroBanner from "@components/Banner/HeroBanner.astro";
 import Card from "@components/Card.astro";
-import Button from "@components/Button/Button.astro";
-import ButtonGhost from "@components/Button/ButtonGhost.astro";
 import PostCard from "@components/PostCard.astro";
-const posts = await Astro.glob("../pages/post/*.{md,mdx}");
+import Button from "@components/Button/Button.astro";
+import ButtonMinium from "@components/Button/ButtonMinimum.astro";
+const posts = await Astro.glob("../pages/post/**/*.{md,mdx}");
 ---
 
 <Base>
   <HeroBanner title={SITE_DESCRIPTION}>
     <div slot="cta">
-      <Button href="#">關於</Button>
-      <ButtonGhost href="#">文章</ButtonGhost>
+      <ButtonMinium href="#">
+        觀看更多文章
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6 inline-block"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+        </svg>
+      </ButtonMinium>
     </div>
     <img
+      class="dark:invert drop-shadow-2xl"
       slot="image"
-      width="600"
+      width="1200"
       height="600"
       src="/images/hero-banner.svg"
       alt="hero-banner"
     />
   </HeroBanner>
   <section class="px-4">
-    <div class="grid md:grid-cols-4 grid-cols-1 gap-4">
-      <div>
-        <h2 class="sr-only">近期文章</h2>
-        <Card>
+    <div class="grid md:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4">
+      <!-- Intro -->
+      <Card>
+        <div
+          class="w-12 h-12 bg-gradient-to-b from-primary-50 to-primary-900 rounded-full absolute top-0 -rotate-45 left-0 transform-gpu translate-x-1/2 -translate-y-1/2"
+        >
+        </div>
+        <div class="flex flex-col justify-between h-full pt-4">
+          <h2 class="sr-only">近期文章</h2>
           <p class="text-xl">
-            <img
-              class="-mt-40"
-              slot="image"
-              width="600"
-              height="600"
-              src="/images/placeholder.svg"
-              alt="placeholder"
-            />
-
-            我撰寫文章，範圍涵蓋了設計思考、前端開發、現代程式設計……等議題。
-            <br />
-            <br />
-            <Button href="#">非常歡迎您 提供寶貴的意見</Button>
+            我撰寫設計思考、前端開發、現代程式設計……等議題的文章。歡迎提供建議或點擊以下連結聯絡我。
           </p>
-        </Card>
-      </div>
+          <ButtonMinium href="mailto:bottle200918@gmail.com">
+            提供意見
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 inline-block"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+            </svg>
+          </ButtonMinium>
+        </div>
+      </Card>
+      <!-- Posts Preview -->
       <div class="col-span-3">
         <ul class="flex gap-4">
           {posts.slice(0, 3).map((post) => <PostCard post={post} />)}

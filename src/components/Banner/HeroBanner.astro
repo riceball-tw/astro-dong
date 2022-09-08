@@ -7,13 +7,13 @@ const { title } = Astro.props;
 >
   <div>
     <h1
-      class="leading-normal md:leading-normal text-2xl md:text-3xl mb-24"
+      class="dark:text-white text-black leading-normal md:leading-normal text-2xl md:text-3xl mb-24"
       set:html={title}
     >
     </h1>
     <slot name="cta" />
   </div>
-  <div class="flex justify-center">
+  <div class="flex justify-center row-start-1 md:row-auto my-8">
     <slot name="image" />
   </div>
 </section>
