@@ -1,22 +1,78 @@
 ---
 import Base from "@layouts/Base.astro";
 import HeroBanner from "@components/Banner/HeroBanner.astro";
-import removeHTMLTag from "@utils/removeHTMLTag";
+import Card from "@components/Card.astro";
+const API = import.meta.env.API_SOURCE;
+
 const title = "關於";
 const description = "關於我們";
+
+const response = await fetch(import.meta.env.API_SOURCE, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+{
+  about{
+  	data{
+      attributes{
+        bannerHeading,
+        bio
+      }
+    }
+  }
+}
+        `,
+    variables: {
+      name: "Toronto",
+    },
+  }),
+});
+const data = await response.json();
+const { bannerHeading, bio } = data.data.about.data.attributes;
 ---
 
 <Base title={title} description={description}>
-  <HeroBanner
-    title="哈囉，我是宗瑋。 <br>目前主要在六角學院擔任前端實習助教與獨立接案。<br>學習橫跨設計與開發大大小小的事"
-  >
-    <img slot="image" width="600" src="/images/hero-banner.svg" alt="a" />
+  <HeroBanner title={bannerHeading}>
+    <img
+      class="dark:invert drop-shadow-2xl"
+      slot="image"
+      width="1200"
+      height="600"
+      src="/images/about-banner.svg"
+      alt="About Banner"
+    />
   </HeroBanner>
-  <div class="prose dark:prose-invert mx-8">
-    <h2>關於我</h2>
-    <p>
-      在很久以前還是個設計師，但在過程中慢慢發覺前端開發更適合我想做的事，期間獨立接案與在六角擔任助教協助同學都是讓我感到充滿熱誠的事情。
+  <section class="mx-8 grid grid-cols-1 gap-8 md:grid-cols-3 mb-40">
+    <!-- Intro -->
+    <h2 class="text-3xl">
+      學習、討論與紀錄所學，<br
+        class="hidden lg:block"
+      />參與「學習」的過程是我最大的樂趣。
+    </h2>
+    <!-- Paragraph -->
+    <p
+      class="columns-1 lg:columns-2 gap-8 col-span-2 text-xl prose dark:prose-invert max-w-max"
+    >
+      自從 2022 年 7 月開始在六角學院擔任實習助教，期間審核前端 <a
+        href="https://www.hexschool.com/2022/06/27/2022-06-27-react-study-circle/"
+        >React 讀書會</a
+      >、<a
+        href="https://www.hexschool.com/courses/web-layout-training-1st.html"
+        >切版課程</a
+      >、<a href="https://www.hexschool.com/courses/javascript.html"
+        >Javascript 基礎課程</a
+      >
+      ……解惑上百個問題與題目、準備課程素材、提供意見反饋與討論，和六角學院的同學們一同學習一同進步！除此之外也會經營撰寫
+      <a href="#">前端設計開發相關文章</a
+      >。同時是一名設計師也是前端開發者，並不滿意被侷限在某個既定的位置上，興趣廣泛的自學者。
     </p>
-    <p>除了分享所學之外，也非常熱衷於學習新技術與嘗試各種不同的領域。</p>
-  </div>
+  </section>
+  <section class="mx-8">
+    <h2 class="text-3xl">了解我學習的東西</h2>
+    <!-- Gallery -->
+    <div class="flex">
+      <Card>HTML</Card>
+    </div>
+  </section>
 </Base>

@@ -29,17 +29,11 @@ const posts = await Astro.glob("../pages/post/**/*.{md,mdx}");
         </svg>
       </ButtonMinium>
     </div>
-    <img
-      class="dark:invert drop-shadow-2xl"
-      slot="image"
-      width="1200"
-      height="600"
-      src="/images/hero-banner.svg"
-      alt="hero-banner"
-    />
   </HeroBanner>
   <section class="px-4">
-    <div class="grid md:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4">
+    <div
+      class="grid md:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4 mt-8 md:mt-0"
+    >
       <!-- Intro -->
       <Card>
         <div
