@@ -1,46 +1,80 @@
 ---
-import PageBanner from "@components/Banner/PageBanner.astro";
 import Base from "@layouts/Base.astro";
+import PageBanner from "@components/Banner/PageBanner.astro";
 import PostCard from "@components/PostCard.astro";
-import { generateCategoryData } from "@utils/generateCategoryData";
-
+import { queryFetch } from "@utils/queryFetch";
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob("../*.{md,mdx}");
-  const allCategoriesUnique = new Set();
+  const filtedPosts = await queryFetch(`{
+  posts(filters: {categories:{name:{eq:"GG"}}}){
+    data {
+      attributes {
+        featuredIcon {
+          data {
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
+        slug
+        date
+        titletc
+        excerpt
+        categories{
+          data{
+            attributes{
+              name
+              slug
+            }
+          }
+        }
+        content
+      }
+    }
+  }
+}
+`).then((result) => result.data.posts.data);
 
-  // Get every posts' category and put into allCategoriesUnique
-  allPosts.map((post) => {
-    post.frontmatter.category &&
-      post.frontmatter.category.map((category) => {
-        allCategoriesUnique.add(category);
-      });
-  });
-  const allCategoriesData = generateCategoryData(allCategoriesUnique);
+  const categories = await queryFetch(`{
+	categories{
+    data{
+      attributes{
+        name
+        slug
+      }
+    }
+  }
+}
+`).then((result) => result.data.categories.data);
 
-  return allCategoriesData.map((category) => {
-    // filter the posts that match the given category
-
-    const posts = allPosts.filter((post) =>
-      post.frontmatter.category.includes(category.name)
-    );
+  return categories.map((category) => {
     return {
-      params: { slug: category.slug },
+      params: { slug: category.attributes.slug },
       props: {
-        category: category.name,
-        posts: posts,
+        categoryName: category.attributes.name,
+        filtedPosts,
       },
     };
   });
 }
-
-const { category, posts } = Astro.props;
+const { categoryName, filtedPosts } = Astro.props;
+const title = `搜尋結果：${categoryName}`;
+const description = `搜尋頁面`;
 ---
 
-<Base title={`搜尋分類：${category}`}>
-  <div>
-    <PageBanner title={category} />
-    <ul>
-      {posts.map((post) => <PostCard post={post} />)}
-    </ul>
-  </div>
+<Base title={title} description={description}>
+  <PageBanner title={title} />
+
+  <section class="px-4">
+    <div
+      class="grid md:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4 mt-8 md:mt-0"
+    >
+      {
+        filtedPosts.map((post) => {
+          return <PostCard post={post.attributes} />;
+        })
+      }
+    </div>
+  </section>
 </Base>

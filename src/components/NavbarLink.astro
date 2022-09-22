@@ -9,10 +9,10 @@ if (item.url === "/") {
 }
 ---
 
-<li class="inline-block flex-1">
+<li class=`inline-block flex-1 ${isHome}`>
   <a
     href={href}
-    class={`w-full p-8 inline-block ${isHome}`}
+    class={`w-full p-4 md:p-8 inline-block `}
     class:list={[className, { isActive: isActive }]}
     {...props}
   >

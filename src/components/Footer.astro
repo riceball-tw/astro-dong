@@ -4,8 +4,9 @@ import { SITE_COPYRIGHT } from "@config";
 import { SITE_SOCIAL } from "@config";
 ---
 
-<footer class="flex justify-between sm:mb-0 mb-20">
-  <span class="p-4">
+<footer class="flex flex-col md:flex-row justify-between sm:mb-0 mb-16">
+  <!-- Copyrihgt -->
+  <span class="p-4 md:text-base text-sm">
     <Fragment set:html={SITE_COPYRIGHT} />
   </span>
 

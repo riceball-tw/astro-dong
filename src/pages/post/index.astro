@@ -1,0 +1,54 @@
+---
+import Base from "@layouts/Base.astro";
+import PageBanner from "@components/Banner/PageBanner.astro";
+import { queryFetch } from "@utils/queryFetch";
+import PostCard from "@components/PostCard.astro";
+const posts = await queryFetch(`{
+    posts {
+      data {
+        attributes {
+          slug
+          featuredIcon {
+            data {
+              attributes {
+                url
+                width
+                height
+              }
+            }
+          }
+          date
+          titletc
+          excerpt
+          content
+          categories{
+            data{
+              attributes{
+                name
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  `).then((result) => result.data.posts.data);
+const title = "所有文章";
+const description = "所有種類的文章";
+---
+
+<Base title={title}>
+  <PageBanner description={description} />
+  <section class="px-4">
+    <div
+      class="grid md:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4 mt-8 md:mt-0"
+    >
+      {
+        posts.map((post) => {
+          return <PostCard post={post.attributes} />;
+        })
+      }
+    </div>
+  </section>
+</Base>

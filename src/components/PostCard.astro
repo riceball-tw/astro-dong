@@ -1,47 +1,49 @@
 ---
 import Card from "@components/Card.astro";
+import CategoriesList from "@components/CategoriesList.astro";
 const { post } = Astro.props;
+const { featuredIcon, titletc, excerpt, slug, date, categories } = post;
 ---
 
-<li class="max-w-[450px]">
+<li class="list-none">
   <Card>
-    <article class="pt-4">
-      <a href={post.url}>
-        {
-          // Emoji
-          post.frontmatter.emoji && (
-            <div class="text-4xl absolute top-0 left-0 transform-gpu -translate-y-1/2 translate-x-1/2">
-              {post.frontmatter.emoji}
-            </div>
-          )
-        }
-        <h3 class="text-2xl mb-4">{post.frontmatter.titletc}</h3>
+    <article class="pt-8">
+      <img
+        src={`${import.meta.env.STRAPI_API}${featuredIcon.data.attributes.url}`}
+        class="absolute top-0 left-0 rounded-lg transform-gpu -translate-y-1/2 ml-4"
+        width={featuredIcon.data.attributes.width}
+        height={featuredIcon.data.attributes.height}
+        alt="文章圖片"
+      />
+      <a href=`/post/${slug}`>
+        <h3 class="text-2xl mb-4">{titletc}</h3>
       </a>
       <!-- Paragraph -->
-      <p class="text-sm">{post.frontmatter.description}</p>
+      <p>{excerpt}</p>
       <!-- Footer -->
       <div class="flex justify-between items-center mt-8">
         <!-- Time -->
-        <time class="inline-block">
-          {post.frontmatter.date}
+        <time class="inline-block text-sm">
+          {date}
         </time>
         <div>
           <!-- Category -->
-          <ul class="inline-block">
+          <CategoriesList categories={categories.data} />
+          <!-- <ul class="inline-block">
             {
-              post.frontmatter.category.map((tag, index) => (
+              post.category.map((tag, index) => (
                 <li class="inline-block opacity-80 hover:opacity-100">
                   {index ? <div class="inline-block">．</div> : ""}
                   <a href={`/post/categories/${tag}`}>{tag}</a>
                 </li>
               ))
             }
-          </ul>
+          </ul> -->
           <!-- Tag -->
-          <span>．</span>
+          <!-- <span>．</span>
           <ul class="inline-block">
             {
-              post.frontmatter.tag.map((tag, index) => (
+              post.tag.map((tag, index) => (
                 <li class="inline-block opacity-80 hover:opacity-100">
                   {index ? (
                     <div class="inline-block ml-1.5 text-sm opacity-60">/</div>
@@ -52,7 +54,7 @@ const { post } = Astro.props;
                 </li>
               ))
             }
-          </ul>
+          </ul> -->
         </div>
       </div>
     </article>

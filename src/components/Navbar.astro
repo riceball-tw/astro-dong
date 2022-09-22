@@ -4,15 +4,15 @@ import { SITE_BRAND, SITE_NAV } from "@config";
 ---
 
 <nav
-  class="fixed bottom-0 left-0 flex items-center justify-between w-full sm:static z-50"
+  class="fixed bottom-0 left-0 flex items-center justify-between w-full sm:static z-50 h-16 filter md:backdrop-blur-none backdrop-blur-xl"
 >
   <div class="grid grid-cols-3 md:grid-cols-2 w-full whitespace-nowrap">
     <!-- Brand -->
-    <h2>
-      <a class="font-bold p-4 md:p-8 inline-block text-xl" href="/">
+    <a class="font-bold p-4 md:p-8 flex items-center text-xl" href="/">
+      <h2>
         {SITE_BRAND}
-      </a>
-    </h2>
+      </h2>
+    </a>
 
     <!-- Navbar List -->
     <div class="md:col-span-1 col-span-2">
@@ -26,7 +26,10 @@ import { SITE_BRAND, SITE_NAV } from "@config";
         }
 
         <li class="inline-block flex-1">
-          <button onclick="alert('Nope')" class="p-8 w-full inline-block">
+          <button
+            onclick="alert('Nope')"
+            class="p-4 md:p-8 w-full inline-block"
+          >
             <span>搜尋</span>
           </button>
         </li>

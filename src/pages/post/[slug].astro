@@ -1,0 +1,76 @@
+---
+import SinglePost from "@layouts/SinglePost.astro";
+import { queryFetch } from "@utils/queryFetch";
+import { marked } from "marked";
+import hljs from "highlight.js";
+import "highlight.js/styles/monokai-sublime.css";
+
+marked.setOptions({
+  highlight: function (code, lang, _callback) {
+    if (hljs.getLanguage(lang)) {
+      return hljs.highlight(lang, code).value;
+    } else {
+      return hljs.highlightAuto(code).value;
+    }
+  },
+});
+
+export async function getStaticPaths() {
+  const posts = await queryFetch(`{
+    posts {
+      data {
+        attributes {
+          featuredIcon{
+            data{
+              attributes{
+                url
+                alternativeText
+                width
+                height
+              }
+            }
+          }
+          featuredImage{
+            data{
+              attributes{
+                url
+                alternativeText
+                width
+                height
+              }
+            }
+          }
+          categories{
+            data{
+              attributes{
+                name
+                slug
+              }
+            }
+          }
+          title
+          titletc
+          content
+          excerpt
+          slug
+          date
+        }
+      }
+    }
+  }
+  `).then((result) => result.data.posts.data);
+
+  return posts.map((post) => {
+    return {
+      params: { slug: post.attributes.slug },
+      props: {
+        post,
+      },
+    };
+  });
+}
+---
+
+<SinglePost post={Astro.props.post}>
+  <Fragment set:html={marked.parse(Astro.props.post.attributes.content)} />
+</SinglePost>

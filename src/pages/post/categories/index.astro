@@ -1,28 +1,36 @@
 ---
-import PageBanner from "@components/Banner/PageBanner.astro";
-import CategoryPostCard from "@components/CategoryPostCard.astro";
 import Base from "@layouts/Base.astro";
-import { generateCategoryData } from "@utils/generateCategoryData";
-const allPosts = await Astro.glob("../*.{md,mdx}");
-const allCategoriesUnique = new Set();
-allPosts.map((post) => {
-  post.frontmatter.category &&
-    post.frontmatter.category.map((category) => {
-      allCategoriesUnique.add(category);
-    });
-});
-
-const allCategoriesData = generateCategoryData(allCategoriesUnique);
-const title = "所有分類";
+import PageBanner from "@components/Banner/PageBanner.astro";
+import Card from "@components/Card.astro";
+import { queryFetch } from "@utils/queryFetch";
+const categories = await queryFetch(`{
+	categories{
+    data{
+      attributes{
+        name
+        slug
+      }
+    }
+  }
+}
+`).then((result) => result.data.categories.data);
+const title = "文章分類";
+const description = "所有文章的大分類";
 ---
 
-<Base title={title}>
-  <PageBanner title={title} } />
-  <ul class="grid grid-cols-3">
-    {
-      allCategoriesData.map((category) => (
-        <CategoryPostCard category={category} />
-      ))
-    }
-  </ul>
+<Base>
+  <PageBanner title={title} description={description} />
+  {
+    categories.map((category) => (
+      <ul>
+        <li>
+          <Card>
+            <a href={`/post/categories/${category.attributes.slug}`}>
+              {category.attributes.name}
+            </a>
+          </Card>
+        </li>
+      </ul>
+    ))
+  }
 </Base>

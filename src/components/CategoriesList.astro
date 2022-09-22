@@ -1,0 +1,18 @@
+---
+const { categories } = Astro.props;
+---
+
+<ul>
+  {
+    categories.map((category, index) => (
+      <Fragment>
+        <li class="inline-block">
+          <a class="border rounded-full text-sm px-2 py-1 inline-block opacity-40 hover:opacity-100" href=`/post/categories/${category.attributes.slug}`>
+          {category.attributes.name}
+          </a>
+        </li>
+        {categories.length === index + 1 ? "" : <span class="mx-1">/</span> }
+      </Fragment>
+    ))
+  }
+</ul>

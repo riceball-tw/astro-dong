@@ -1,47 +1,52 @@
 ---
 import Base from "@layouts/Base.astro";
-import { generateCategoryData } from "@utils/generateCategoryData";
-const { frontmatter } = Astro.props;
-const allCategoriesData = generateCategoryData(frontmatter.category);
+import CategoriesList from "@components/CategoriesList.astro";
+const { title, titletc, categories, excerpt } = Astro.props.post.attributes;
+const featuredImage = Astro.props.post.attributes.featuredImage.data;
+const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
 ---
 
-<Base title={frontmatter.titletc} description={frontmatter.description}>
-  <main>
-    <article>
-      <header>
-        <img
-          class="mx-auto"
-          src="https://picsum.photos/1200/600"
-          width="1200"
-          height="600"
-          alt="test image"
-        />
-        <div class="prose dark:prose-invert mx-auto">
-          <!-- Heading -->
-          <h1>
-            <span class="text-xl font-normal">
-              {frontmatter.title}
-            </span>
-            <br />
-            {frontmatter.titletc}
-          </h1>
-          <!-- Category -->
-          <div>
-            {
-              allCategoriesData.map((category) => (
-                <li>
-                  <a href={`/post/categories/${category.slug}`}>
-                    {category.name}
-                  </a>
-                </li>
-              ))
-            }
-          </div>
-        </div>
-      </header>
-      <div class="prose dark:prose-invert mx-auto">
-        <slot />
+<Base title={titletc} description={excerpt}>
+  <article class="mt-40">
+    <header class="mb-16">
+      <!-- FeaturedImage -->
+      {
+        featuredImage ? (
+          <img
+            class="mx-auto mb-16"
+            src={import.meta.env.STRAPI_API + featuredImage.attributes.url}
+            width={featuredImage.attributes.width}
+            height={featuredImage.attributes.height}
+            alt={featuredImage.attributes.alternativeText}
+          />
+        ) : (
+          ""
+        )
+      }
+      <div class="md:mx-auto relative max-w-prose mx-8">
+        <!-- Heading -->
+        <h1>
+          <div class="mb-4">{title}</div>
+          <div class="text-4xl prose dark:prose-invert mb-4">{titletc}</div>
+        </h1>
+        <CategoriesList categories={categories.data} />
+        {
+          featuredIcon ? (
+            <img
+              class="mx-auto absolute top-0 left-0 rounded-lg transform-gpu -translate-y-full -mt-8"
+              src={import.meta.env.STRAPI_API + featuredIcon.attributes.url}
+              width={featuredIcon.attributes.width}
+              height={featuredIcon.attributes.height}
+              alt={featuredIcon.attributes.alternativeText}
+            />
+          ) : (
+            ""
+          )
+        }
       </div>
-    </article>
-  </main>
+    </header>
+    <div class="prose dark:prose-invert mx-8 md:mx-auto">
+      <slot />
+    </div>
+  </article>
 </Base>

@@ -6,7 +6,39 @@ import Card from "@components/Card.astro";
 import PostCard from "@components/PostCard.astro";
 import Button from "@components/Button/Button.astro";
 import ButtonMinium from "@components/Button/ButtonMinimum.astro";
-const posts = await Astro.glob("../pages/post/**/*.{md,mdx}");
+import { queryFetch } from "@utils/queryFetch";
+
+const posts = await queryFetch(`{
+    posts(pagination: { start:0, limit: 3}) {
+      data {
+        attributes {
+          featuredIcon {
+            data {
+              attributes {
+                url
+                width
+                height
+              }
+            }
+          }
+          slug
+          date
+          titletc
+          excerpt
+          categories{
+            data{
+              attributes{
+                name
+                slug
+              }
+            }
+          }
+          content
+        }
+      }
+    }
+  }
+  `).then((result) => result.data.posts.data);
 ---
 
 <Base>
@@ -63,12 +95,12 @@ const posts = await Astro.glob("../pages/post/**/*.{md,mdx}");
           </ButtonMinium>
         </div>
       </Card>
-      <!-- Posts Preview -->
-      <div class="col-span-3">
-        <ul class="flex gap-4">
-          {posts.slice(0, 3).map((post) => <PostCard post={post} />)}
-        </ul>
-      </div>
+
+      {
+        posts.map((post) => {
+          return <PostCard post={post.attributes} />;
+        })
+      }
     </div>
   </section>
 </Base>
