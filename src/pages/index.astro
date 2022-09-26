@@ -4,9 +4,19 @@ import Base from "@layouts/Base.astro";
 import HeroBanner from "@components/Banner/HeroBanner.astro";
 import Card from "@components/Card.astro";
 import PostCard from "@components/PostCard.astro";
-import Button from "@components/Button/Button.astro";
 import ButtonMinium from "@components/Button/ButtonMinimum.astro";
 import { queryFetch } from "@utils/queryFetch";
+
+const { heroBanner, info } = await queryFetch(`{
+  home{
+  	data{
+      attributes{
+        heroBanner
+        info
+      }
+    }
+  }
+}`).then((result) => result.data.home.data.attributes);
 
 const posts = await queryFetch(`{
     posts(pagination: { start:0, limit: 3}) {
@@ -42,7 +52,7 @@ const posts = await queryFetch(`{
 ---
 
 <Base>
-  <HeroBanner title={SITE_DESCRIPTION}>
+  <HeroBanner title={heroBanner}>
     <div slot="cta">
       <ButtonMinium href="#">
         觀看更多文章
@@ -68,14 +78,17 @@ const posts = await queryFetch(`{
     >
       <!-- Intro -->
       <Card>
-        <div
-          class="w-12 h-12 bg-gradient-to-b from-primary-50 to-primary-900 rounded-full absolute top-0 -rotate-45 left-0 transform-gpu translate-x-1/2 -translate-y-1/2"
-        >
-        </div>
-        <div class="flex flex-col justify-between h-full pt-4">
+        <img
+          src="/images/me/riceball.webp"
+          class="bg-gradient-to-b from-primary-50 to-primary-900 rounded-lg absolute top-0 left-0 transform-gpu ml-6 -translate-y-1/2"
+          alt="一顆在旋轉飯糰(我的個人頭貼)"
+          width="64"
+          height="64"
+        />
+        <div class="flex flex-col justify-between h-full pt-8">
           <h2 class="sr-only">近期文章</h2>
-          <p class="text-xl">
-            我撰寫設計思考、前端開發、現代程式設計……等議題的文章。歡迎提供建議或點擊以下連結聯絡我。
+          <p class="text-xl mb-8">
+            {info}
           </p>
           <ButtonMinium href="mailto:bottle200918@gmail.com">
             提供意見

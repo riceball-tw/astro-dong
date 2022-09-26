@@ -12,19 +12,9 @@ const { title, description } = Astro.props;
       <Head title={title} description={description} />
     </slot>
   </head>
-  <body class="bg-default text-default">
+  <body class="bg-default text-default dark:bg-[url('/images/hero-banner/site-gradient-dark.svg')] bg-[url('/images/hero-banner/site-gradient-light.svg')] bg-no-repeat bg-cover bg-center">
     <Navbar />
     <div class="min-h-screen">
-      <!-- <img
-        class="absolute top-0 right-0 -z-10"
-        src="https://tailwindcss.com/_next/static/media/docs-dark@30.77f062b5fd90f0d2cd4752cd9a8649c8.avif"
-        alt=""
-      /> -->
-      <img
-        class="absolute top-0 right-0 -z-10"
-        src="/images/gradient.svg"
-        alt=""
-      />
       <slot />
     </div>
     <Footer />

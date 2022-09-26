@@ -9,7 +9,7 @@ const { featuredIcon, titletc, excerpt, slug, date, categories } = post;
   <Card>
     <article class="pt-8">
       <img
-        src={`${featuredIcon.data.attributes.url}`}
+        src={import.meta.env.URL_PREFIX + featuredIcon.data.attributes.url}
         class="absolute top-0 left-0 rounded-lg transform-gpu -translate-y-1/2 ml-4"
         width={featuredIcon.data.attributes.width}
         height={featuredIcon.data.attributes.height}

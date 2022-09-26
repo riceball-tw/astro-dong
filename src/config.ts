@@ -1,7 +1,7 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_BRAND = "WEi";
+export const SITE_BRAND = "WEBDONG";
 export const SITE_BRAND_SHORT = "WD";
 export const SITE_BRAND_TC = "網東";
 export const SITE_SLOGAN = "專業的角度有趣的玩網頁";
@@ -32,10 +32,6 @@ export const SITE_SOCIAL = [
   {
     name: "YT",
     url: "https://www.youtube.com/channel/",
-  },
-  {
-    name: "BE",
-    url: "https://www.behance.net/",
   },
 ];
 

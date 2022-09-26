@@ -1,10 +1,18 @@
 ---
 import Base from "@layouts/Base.astro";
+import Button from "@components/Button/Button.astro";
 const title = "404 頁面";
 const description = "這個網頁並不存在";
 ---
 
-<Base title={title} , description={description}>
-  <h1>This is 404 Page</h1>
-  <a href="/">Go Home</a>
+<Base title={title} description={description}>
+  <section class="py-20 text-center">
+    <h1 class="text-3xl">
+      <div class="text-8xl">404</div>
+      <br />您所搜尋的頁面並不存在
+    </h1>
+    <div class="my-8">
+      <Button href="/">Go Home</Button>
+    </div>
+  </section>
 </Base>
