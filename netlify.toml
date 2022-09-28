@@ -1,4 +1,4 @@
 [context.branch-deploy.environment]
   NODE_ENV = "production"
-  STRAPI_API = "https://strapi-blog-staging-4ui3hgretq-de.a.run.app"
+  STRAPI_API = "https://api.webdong.dev/"
   URL_PREFIX= ""
