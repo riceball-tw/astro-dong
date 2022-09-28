@@ -1,19 +1,27 @@
 ---
-const today = new Date();
-import { SITE_COPYRIGHT } from "@config";
-import { SITE_SOCIAL } from "@config";
+import { queryFetch } from "@utils/queryFetch";
+const { copyright, socialLink } = await queryFetch(`{
+  siteConfig{
+    data{
+      attributes{
+        global
+      }
+    }
+  }
+}`).then((result) => result.data.siteConfig.data.attributes.global.brand);
+
 ---
 
 <footer class="flex  md:flex-row justify-between sm:mb-0 mb-16">
   <!-- Copyrihgt -->
   <span class="p-4 md:text-base text-sm">
-    <Fragment set:html={SITE_COPYRIGHT} />
+    <Fragment set:html={copyright} />
   </span>
 
   <div class="flex">
     <ul>
       {
-        SITE_SOCIAL.map((social) => (
+        socialLink.map((social) => (
           <li class="inline-block">
             <a class="p-4 inline-block" href={social.url}>
               {social.name}

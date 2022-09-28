@@ -1,15 +1,25 @@
 ---
 import "@styles/global.css";
-import { SITE_BRAND, SITE_SLOGAN, SITE_DESCRIPTION } from "@config";
+import { queryFetch } from "@utils/queryFetch";
+const cloudConfig = await queryFetch(`{
+  siteConfig{
+    data{
+      attributes{
+        global
+      }
+    }
+  }
+}`).then((result) => result.data.siteConfig.data.attributes.global);
 
 export interface Props {
   image?: string;
 }
 
 const { title, description } = Astro.props;
-const SeoTitle = (title || SITE_SLOGAN) + ` - ${SITE_BRAND}`;
-const SeoDescription = description || SITE_DESCRIPTION;
-const image = "/placeholder-social.jpg";
+const SeoTitle = (title || cloudConfig.brand.slogan) + ` - ${cloudConfig.brand.eng}`;
+const SeoDescription = description || cloudConfig.brand.description;
+const SeoImage = "/images/placeholder/placeholder-og.jpg";
+
 ---
 
 <!-- Global Metadata -->
@@ -28,14 +38,14 @@ const image = "/placeholder-social.jpg";
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={SeoTitle} />
 <meta property="og:description" content={SeoDescription} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={new URL(SeoImage, Astro.url)} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={SeoTitle} />
 <meta property="twitter:description" content={SeoDescription} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={new URL(SeoImage, Astro.url)} />
 
 <script>
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
