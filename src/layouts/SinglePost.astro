@@ -14,7 +14,7 @@ const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
         featuredImage ? (
           <img
             class="mx-auto mb-16"
-            src={import.meta.env.STRAPI_API + featuredImage.attributes.url}
+            src={import.meta.env.URL_PREFIX + featuredImage.attributes.url}
             width={featuredImage.attributes.width}
             height={featuredImage.attributes.height}
             alt={featuredImage.attributes.alternativeText}
