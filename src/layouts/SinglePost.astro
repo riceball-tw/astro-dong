@@ -34,7 +34,7 @@ const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
           featuredIcon ? (
             <img
               class="mx-auto absolute top-0 left-0 rounded-lg transform-gpu -translate-y-full -mt-8"
-              src={import.meta.env.STRAPI_API + featuredIcon.attributes.url}
+              src={import.meta.env.URL_PREFIX + featuredIcon.attributes.url}
               width={featuredIcon.attributes.width}
               height={featuredIcon.attributes.height}
               alt={featuredIcon.attributes.alternativeText}
