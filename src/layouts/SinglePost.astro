@@ -1,10 +1,15 @@
 ---
 import Base from "@layouts/Base.astro";
 import CategoriesList from "@components/CategoriesList.astro";
-const { title, titletc, categories, excerpt } = Astro.props.post.attributes;
+const { title, titletc, categories, excerpt, author } = Astro.props.post.attributes;
 const featuredImage = Astro.props.post.attributes.featuredImage.data;
 const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
 ---
+
+<link rel="stylesheet" href="/style/monokai.min.css">
+<script is:inline defer src="/js/highlight.min.js"></script>
+
+<script>hljs.highlightAll();</script>
 
 <Base title={titletc} description={excerpt}>
   <article class="mt-40">
@@ -26,9 +31,15 @@ const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
       <div class="md:mx-auto relative max-w-prose mx-8">
         <!-- Heading -->
         <h1>
-          <div class="mb-4">{title}</div>
+          <div class="mb-2">{title}</div>
           <div class="text-4xl prose dark:prose-invert mb-4">{titletc}</div>
         </h1>
+        <!-- Author -->
+        <!-- <div class="mb-8 static lg:absolute lg:top-0 lg:left-0 lg:transform-gpu lg:-translate-x-full lg:pr-8 opacity-40">
+          作者：{author.data.attributes.name}
+          <br>
+        </div> -->
+        <!-- Categories -->
         <CategoriesList categories={categories.data} />
         {
           featuredIcon ? (

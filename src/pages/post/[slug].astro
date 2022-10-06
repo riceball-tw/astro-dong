@@ -1,20 +1,6 @@
 ---
 import SinglePost from "@layouts/SinglePost.astro";
 import { queryFetch } from "@utils/queryFetch";
-import { marked } from "marked";
-import hljs from "highlight.js";
-import "highlight.js/styles/monokai-sublime.css";
-
-marked.setOptions({
-  highlight: function (code, lang, _callback) {
-    if (hljs.getLanguage(lang)) {
-      return hljs.highlight(lang, code).value;
-    } else {
-      return hljs.highlightAuto(code).value;
-    }
-  },
-});
-
 export async function getStaticPaths() {
   const posts = await queryFetch(`{
     posts {
@@ -40,6 +26,14 @@ export async function getStaticPaths() {
               }
             }
           }
+          author{
+            data{
+              attributes{
+                name
+                slug
+              }
+            }
+          }
           categories{
             data{
               attributes{
@@ -48,6 +42,7 @@ export async function getStaticPaths() {
               }
             }
           }
+
           title
           titletc
           content
@@ -64,13 +59,13 @@ export async function getStaticPaths() {
     return {
       params: { slug: post.attributes.slug },
       props: {
-        post,
+        post
       },
     };
   });
 }
+const { post } = Astro.props
 ---
-
-<SinglePost post={Astro.props.post}>
-  <Fragment set:html={marked.parse(Astro.props.post.attributes.content)} />
+<SinglePost post={post}>
+  <Fragment set:html={post.attributes.content} />
 </SinglePost>
