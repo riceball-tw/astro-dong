@@ -1,11 +1,11 @@
 ---
 import Base from "@layouts/Base.astro";
 import PageBanner from "@components/Banner/PageBanner.astro";
-import PostCard from "@components/PostCard.astro";
+import PostCard from "@components/Card/PostCard.astro";
 import { queryFetch } from "@utils/queryFetch";
 const { categoryName } = Astro.props;
-const title = `搜尋結果：${categoryName}`;
-const description = `搜尋頁面`;
+const title = `搜尋文章分類結果：${categoryName}`;
+const description = `搜尋文章分類頁面`;
 
 const filtedPosts = await queryFetch(`query Category ($targetCategory: String!){
   posts(filters: {category:{name:{eq:$targetCategory}}}){
@@ -24,6 +24,14 @@ const filtedPosts = await queryFetch(`query Category ($targetCategory: String!){
         date
         titletc
         excerpt
+        tags{
+          data{
+            attributes{
+              name
+              slug
+            }
+          }
+        }
         category{
           data{
             attributes{

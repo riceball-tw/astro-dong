@@ -1,21 +1,15 @@
 ---
-import Pill from "@components/Pill.astro";
+const {tags} = Astro.props
 
 ---
-<!-- 
-<ul>
+<ul class="flex gap-4">
   {
-    category.map((category, index) => (
-      <Fragment>
-        <li class="inline-block">
-          <a class="" href=`/post/categories/${category.attributes.slug}`>
-            <Pill>
-              {category.attributes.name}
-            </Pill>
-          </a>
-        </li>
-        {category.length === index + 1 ? "" : <span class="mx-1">/</span> }
-      </Fragment>
+  tags.map(tag => (
+    <li>
+      <a class="opacity-40 hover:opacity-100" href=`/post/tags/${tag.attributes.slug}`>
+          # {tag.attributes.name}
+      </a>
+    </li>
     ))
   }
-</ul> -->
+</ul>

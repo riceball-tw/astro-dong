@@ -1,14 +1,14 @@
 ---
 import Base from "@layouts/Base.astro";
 import PageBanner from "@components/Banner/PageBanner.astro";
-import PostCard from "@components/PostCard.astro";
+import PostCard from "@components/Card/PostCard.astro";
 import { queryFetch } from "@utils/queryFetch";
 const { categoryName } = Astro.props;
-const title = `搜尋結果：${categoryName}`;
-const description = `搜尋頁面`;
+const title = `搜尋文章標籤結果：${categoryName}`;
+const description = `搜尋文章標籤頁面`;
 
-  const filtedPosts = await queryFetch(`query Category ($targetCategory: String!){
-  posts(filters: {categories:{name:{eq:$targetCategory}}}){
+  const filtedPosts = await queryFetch(`query Tag ($targetTag: String!){
+  posts(filters: {tags:{name:{eq:$targetTag}}}){
     data {
       attributes {
         featuredIcon {
@@ -24,7 +24,15 @@ const description = `搜尋頁面`;
         date
         titletc
         excerpt
-        categories{
+        tags{
+          data{
+            attributes{
+              name
+              slug
+            }
+          }
+        }
+        category{
           data{
             attributes{
               name
@@ -37,12 +45,12 @@ const description = `搜尋頁面`;
     }
   }
 }
-`, `{"targetCategory": "${categoryName}"}`).then((result) => result.data.posts.data);
+`, `{"targetTag": "${categoryName}"}`).then((result) => result.data.posts.data);
 
 
 export async function getStaticPaths() {
-  const categories = await queryFetch(`{
-	categories{
+  const tags = await queryFetch(`{
+	tags{
     data{
       attributes{
         name
@@ -51,13 +59,13 @@ export async function getStaticPaths() {
     }
   }
 }
-`).then((result) => result.data.categories.data);
+`).then((result) => result.data.tags.data);
 
-  return categories.map((category) => {
+  return tags.map((tag) => {
     return {
-      params: { slug: category.attributes.slug },
+      params: { slug: tag.attributes.slug },
       props: {
-        categoryName: category.attributes.name,
+        categoryName: tag.attributes.name,
       },
     };
   });
@@ -66,7 +74,6 @@ export async function getStaticPaths() {
 
 <Base title={title} description={description}>
   <PageBanner title={title} />
-
   <section class="px-4">
     <div
       class="grid md:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4 mt-8 md:mt-0"

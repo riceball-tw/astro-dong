@@ -3,8 +3,8 @@ import Base from "@layouts/Base.astro";
 import PageBanner from "@components/Banner/PageBanner.astro";
 import Pill from "@components/Pill.astro";
 import { queryFetch } from "@utils/queryFetch";
-const category = await queryFetch(`{
-	category{
+const tags = await queryFetch(`{
+	tags{
     data{
       attributes{
         name
@@ -13,7 +13,8 @@ const category = await queryFetch(`{
     }
   }
 }
-`).then((result) => result.data.category.data);
+`).then((result) => result.data.tags.data);
+
 const title = "文章分類";
 const description = "所有文章的大分類";
 ---
@@ -22,14 +23,14 @@ const description = "所有文章的大分類";
   <PageBanner title={title} description={description} />
   <ul class="gap-2 mx-8 flex">
     {
-      category.map((category) => (
+      tags.map((tag) => (
         <li class="text-3xl">
             <Pill>
-              <a href={`/post/categories/${category.attributes.slug}`}>
-                {category.attributes.name}
+              <a href={`/post/tags/${tag.attributes.slug}`}>
+                {tag.attributes.name}
               </a>
             </Pill>
-          </li>
+        </li>
       ))
     }
   </ul>

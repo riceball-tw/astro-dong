@@ -2,7 +2,7 @@
 import Base from "@layouts/Base.astro";
 import PageBanner from "@components/Banner/PageBanner.astro";
 import { queryFetch } from "@utils/queryFetch";
-import PostCard from "@components/PostCard.astro";
+import PostCard from "@components/Card/PostCard.astro";
 const posts = await queryFetch(`{
     posts {
       data {
@@ -21,7 +21,15 @@ const posts = await queryFetch(`{
           titletc
           excerpt
           content
-          categories{
+          tags{
+            data{
+              attributes{
+                name
+                slug
+              }
+            }
+          }
+          category{
             data{
               attributes{
                 name
@@ -34,6 +42,7 @@ const posts = await queryFetch(`{
     }
   }
   `).then((result) => result.data.posts.data);
+
 const title = "所有文章";
 const description = "所有種類的文章";
 ---

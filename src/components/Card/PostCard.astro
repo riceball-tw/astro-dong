@@ -1,9 +1,9 @@
 ---
 import Card from "@components/Card/Card.astro";
 import Category from "@components/Taxonomy/Category.astro";
+import Tags from "@components/Taxonomy/Tags.astro";
 const { post } = Astro.props;
 const { featuredIcon, titletc, excerpt, slug, date, category, tags } = post;
-
 ---
 
 <li class="list-none">
@@ -28,35 +28,12 @@ const { featuredIcon, titletc, excerpt, slug, date, category, tags } = post;
           {date}
         </time>
         <div>
-          <!-- Category -->
-          <Category category={category.data.attributes} />
-
-          <!-- <ul class="inline-block">
-            {
-              post.category.map((tag, index) => (
-                <li class="inline-block opacity-80 hover:opacity-100">
-                  {index ? <div class="inline-block">．</div> : ""}
-                  <a href={`/post/categories/${tag}`}>{tag}</a>
-                </li>
-              ))
-            }
-          </ul> -->
-          <!-- Tag -->
-          <!-- <span>．</span>
-          <ul class="inline-block">
-            {
-              post.tag.map((tag, index) => (
-                <li class="inline-block opacity-80 hover:opacity-100">
-                  {index ? (
-                    <div class="inline-block ml-1.5 text-sm opacity-60">/</div>
-                  ) : (
-                    ""
-                  )}
-                  <a href="#">{tag}</a>
-                </li>
-              ))
-            }
-          </ul> -->
+          <div class="flex">
+            <!-- Category -->
+            <Category category={category.data.attributes} />
+            <!-- Tags -->
+            <Tags tags={tags.data} />
+          </div>
         </div>
       </div>
     </article>

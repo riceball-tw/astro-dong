@@ -3,8 +3,6 @@ import Pill from "@components/Pill.astro";
 const {name, slug} = Astro.props.category
 console.log();
 ---
-<a class="" href=`/post/categories/${slug}`>
-  <Pill>
-    {name}
-  </Pill>
+<a class="relative mr-4 opacity-40 hover:opacity-100" href=`/post/categories/${slug}`>
+    @{name}
 </a>
