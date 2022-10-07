@@ -7,8 +7,8 @@ const { categoryName } = Astro.props;
 const title = `搜尋結果：${categoryName}`;
 const description = `搜尋頁面`;
 
-const filtedPosts = await queryFetch(`query Category ($targetCategory: String!){
-  posts(filters: {category:{name:{eq:$targetCategory}}}){
+  const filtedPosts = await queryFetch(`query Category ($targetCategory: String!){
+  posts(filters: {categories:{name:{eq:$targetCategory}}}){
     data {
       attributes {
         featuredIcon {
@@ -24,7 +24,7 @@ const filtedPosts = await queryFetch(`query Category ($targetCategory: String!){
         date
         titletc
         excerpt
-        category{
+        categories{
           data{
             attributes{
               name

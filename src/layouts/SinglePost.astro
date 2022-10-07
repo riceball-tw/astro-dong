@@ -1,7 +1,7 @@
 ---
 import Base from "@layouts/Base.astro";
-import CategoriesList from "@components/CategoriesList.astro";
-const { title, titletc, categories, excerpt, author } = Astro.props.post.attributes;
+import Category from "@components/Taxonomy/Category.astro";
+const { title, titletc, category, excerpt, author } = Astro.props.post.attributes;
 const featuredImage = Astro.props.post.attributes.featuredImage.data;
 const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
 ---
@@ -40,7 +40,7 @@ const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
           <br>
         </div> -->
         <!-- Categories -->
-        <CategoriesList categories={categories.data} />
+        <Category category={category.data.attributes} />
         {
           featuredIcon ? (
             <img

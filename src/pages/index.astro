@@ -2,8 +2,8 @@
 import { SITE_DESCRIPTION } from "@config";
 import Base from "@layouts/Base.astro";
 import HeroBanner from "@components/Banner/HeroBanner.astro";
-import Card from "@components/Card.astro";
-import PostCard from "@components/PostCard.astro";
+import Card from "@components/Card/Card.astro";
+import PostCard from "@components/Card/PostCard.astro";
 import ButtonMinium from "@components/Button/ButtonMinimum.astro";
 import { queryFetch } from "@utils/queryFetch";
 
@@ -35,7 +35,15 @@ const posts = await queryFetch(`{
           date
           titletc
           excerpt
-          categories{
+          tags{
+            data{
+              attributes{
+                name
+                slug
+              }
+            }
+          }
+          category{
             data{
               attributes{
                 name

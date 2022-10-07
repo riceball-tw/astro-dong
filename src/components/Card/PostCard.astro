@@ -1,8 +1,9 @@
 ---
-import Card from "@components/Card.astro";
-import CategoriesList from "@components/CategoriesList.astro";
+import Card from "@components/Card/Card.astro";
+import Category from "@components/Taxonomy/Category.astro";
 const { post } = Astro.props;
-const { featuredIcon, titletc, excerpt, slug, date, categories } = post;
+const { featuredIcon, titletc, excerpt, slug, date, category, tags } = post;
+
 ---
 
 <li class="list-none">
@@ -28,7 +29,8 @@ const { featuredIcon, titletc, excerpt, slug, date, categories } = post;
         </time>
         <div>
           <!-- Category -->
-          <CategoriesList categories={categories.data} />
+          <Category category={category.data.attributes} />
+
           <!-- <ul class="inline-block">
             {
               post.category.map((tag, index) => (

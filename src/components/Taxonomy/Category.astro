@@ -1,0 +1,10 @@
+---
+import Pill from "@components/Pill.astro";
+const {name, slug} = Astro.props.category
+console.log();
+---
+<a class="" href=`/post/categories/${slug}`>
+  <Pill>
+    {name}
+  </Pill>
+</a>
