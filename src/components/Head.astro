@@ -1,6 +1,7 @@
 ---
 import "@styles/global.css";
 import { queryFetch } from "@utils/queryFetch";
+// Cloud Data
 const cloudConfig = await queryFetch(`{
   siteConfig{
     data{
@@ -10,16 +11,11 @@ const cloudConfig = await queryFetch(`{
     }
   }
 }`).then((result) => result.data.siteConfig.data.attributes.global);
-
-export interface Props {
-  image?: string;
-}
-
-const { title, description } = Astro.props;
+// Prop Data
+const { title, description, image } = Astro.props;
 const SeoTitle = (title || cloudConfig.brand.slogan) + ` - ${cloudConfig.brand.eng}`;
 const SeoDescription = description || cloudConfig.brand.description;
-const SeoImage = "/images/placeholder/placeholder-og.jpg";
-
+const SeoImage = image;
 ---
 
 <!-- Global Metadata -->
@@ -33,24 +29,33 @@ const SeoImage = "/images/placeholder/placeholder-og.jpg";
 
 <meta name="generator" content={Astro.generator} />
 
+
 <!-- Primary Meta Tags -->
 <title>{SeoTitle}</title>
 <meta name="title" content={SeoTitle} />
 <meta name="description" content={SeoDescription} />
 
 <!-- Open Graph / Facebook -->
+<meta property="og:url" content={Astro.url.origin} />
+<meta property="og:locale" content="zh_TW">
 <meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={SeoTitle} />
 <meta property="og:description" content={SeoDescription} />
-<meta property="og:image" content={new URL(SeoImage, Astro.url)} />
-
+<meta property="og:image" content={SeoImage ? SeoImage.attributes.url : new URL("/images/placeholder/placeholder-og.jpg", Astro.url)}/>
+<meta property="og:image:alt" content={SeoImage ? SeoImage.attributes.alternativeText : "預設 og 圖片"}>
+ {
+  SeoImage ?
+    <meta property="og:image:width" content={SeoImage.attributes.width}>
+    <meta property="og:image:height" content={SeoImage.attributes.height}>
+    :
+    ""
+ }
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:domain" content={Astro.url.origin} />
 <meta property="twitter:title" content={SeoTitle} />
 <meta property="twitter:description" content={SeoDescription} />
-<meta property="twitter:image" content={new URL(SeoImage, Astro.url)} />
+<meta property="og:image" content={SeoImage ? SeoImage.attributes.url : new URL("/images/placeholder/placeholder-og.jpg", Astro.url)}/>
 
 <script is:inline>
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
