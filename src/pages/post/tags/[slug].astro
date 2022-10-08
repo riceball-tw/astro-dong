@@ -1,11 +1,12 @@
 ---
 import Base from "@layouts/Base.astro";
 import PageBanner from "@components/Banner/PageBanner.astro";
+import CardGallery from "@components/Card/CardGallery.astro";
 import PostCard from "@components/Card/PostCard.astro";
 import { queryFetch } from "@utils/queryFetch";
 const { categoryName } = Astro.props;
-const title = `搜尋文章標籤結果：${categoryName}`;
-const description = `搜尋文章標籤頁面`;
+const title = `搜尋文章標籤：${categoryName}`;
+const description = `搜尋文章標籤`;
 
   const filtedPosts = await queryFetch(`query Tag ($targetTag: String!){
   posts(filters: {tags:{name:{eq:$targetTag}}}){
@@ -75,14 +76,12 @@ export async function getStaticPaths() {
 <Base title={title} description={description}>
   <PageBanner title={title} />
   <section class="px-4">
-    <div
-      class="grid md:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4 mt-8 md:mt-0"
-    >
+    <CardGallery>
       {
         filtedPosts.map((post) => {
           return <PostCard post={post.attributes} />;
         })
       }
-    </div>
+    </CardGallery>
   </section>
 </Base>

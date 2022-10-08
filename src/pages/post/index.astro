@@ -2,6 +2,7 @@
 import Base from "@layouts/Base.astro";
 import PageBanner from "@components/Banner/PageBanner.astro";
 import { queryFetch } from "@utils/queryFetch";
+import CardGallery from "@components/Card/CardGallery.astro";
 import PostCard from "@components/Card/PostCard.astro";
 const posts = await queryFetch(`{
     posts {
@@ -50,14 +51,12 @@ const description = "所有種類的文章";
 <Base title={title}>
   <PageBanner description={description} />
   <section class="px-4">
-    <div
-      class="grid md:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4 mt-8 md:mt-0"
-    >
+    <CardGallery>
       {
         posts.map((post) => {
           return <PostCard post={post.attributes} />;
         })
       }
-    </div>
+    </CardGallery>
   </section>
 </Base>
