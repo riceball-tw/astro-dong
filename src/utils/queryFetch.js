@@ -8,6 +8,5 @@ export async function queryFetch(query, queryVar) {
       variables: queryVar
     }),
   });
-  const data = await response.json();
-  return data;
+  return await response.json();
 }

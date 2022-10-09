@@ -1,6 +1,7 @@
 ---
 import NavbarLink from "@components/NavbarLink.astro";
 import { SITE_BRAND, SITE_NAV } from "@config";
+import ButtonSearch from "./Button/ButtonSearch.astro";
 ---
 
 <nav
@@ -10,7 +11,6 @@ import { SITE_BRAND, SITE_NAV } from "@config";
     <!-- Brand -->
     <a class="flex items-center md:mx-8 mx-4" href="/">
       <h2>
-
         <img width="160" height="64" src="/images/me/webdongLogo.svg" alt="Site Logo" class="dark:invert">
 
         <span class="sr-only">{SITE_BRAND}</span>
@@ -29,12 +29,7 @@ import { SITE_BRAND, SITE_NAV } from "@config";
         }
 
         <li class="inline-block flex-1">
-          <button
-            onclick="alert('等多一點文章再開發這個功能。 :) ')"
-            class="p-4 md:p-8 w-full inline-block"
-          >
-            <span>搜尋</span>
-          </button>
+          <ButtonSearch />
         </li>
       </ul>
     </div>
