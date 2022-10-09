@@ -1,14 +1,73 @@
 ---
 ---
-
-
 <button
-  data-searchpost
+  data-search-btn
   class="p-4 md:p-8 w-full inline-block"
 >
   <span>搜尋</span>
 </button>
+
 <script>
-  import querySearch from "@utils/querySearch.js";
-  console.log(querySearch());
+  import { queryFetch } from "@utils/queryFetch";
+  const searchBtn = document.querySelector('[data-search-btn]')
+  const searchForm = document.querySelector('[data-search-form')
+  const searchList = document.querySelector('[data-search-list]')
+  const searchInput = document.querySelector('[data-search-input]')
+  const searchModal = document.querySelector('[data-search-modal]')
+  searchModal.addEventListener("click", (e) => {
+    if(e.target !== searchModal) {return}
+    toggleSearchModal()
+  })
+  searchBtn.addEventListener("click",() => {toggleSearchModal(); searchInput.focus()})
+  searchForm.addEventListener("submit", (e) => {e.preventDefault(); searchPost()})
+  searchInput.addEventListener("input", searchPost)
+
+  function toggleSearchModal() {
+    // Toggle Body overflow, make user can not scroll.
+    const body = document.querySelector('body')
+    if (!body.style.overflowY) {
+      body.style.overflowY = "hidden"
+    } else {
+      console.log('xx');
+      body.removeAttribute('style')
+    }
+    // Toggle Modal
+    searchModal.classList.toggle("searchModal--enable")
+    searchModal.classList.toggle("searchModal--disable")
+  }
+
+  async function searchPost() {
+    const searchResult = await queryFetch(`query SearchPost($targetPost: String!){
+    search(query: $targetPost) {
+      posts {
+          data {
+            attributes {
+              title
+              titletc
+              slug
+            }
+          }
+        }
+      }
+    }`, `{"targetPost": "${searchInput.value}"}`).then((res) => res.data.search.posts.data);
+
+    const searchResultHTML = searchResult.map(item => (
+      `
+      <li>
+        <a href="/post/${item.attributes.slug}" class="px-4 py-8 hover:bg-primary-100 inline-block w-full">
+          ${item.attributes.titletc}
+          ${item.attributes.title}
+        </a>
+      </li>
+      `
+    ))
+
+    if (searchResult.length === 0){
+      searchList.innerHTML = `
+      <li class="px-4 py-8">並沒有找到與 ${searchInput.value} 相關的文章</li>
+      `;
+      return;
+      }
+    searchList.innerHTML = searchResultHTML
+  }
 </script>
