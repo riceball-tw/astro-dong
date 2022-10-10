@@ -1,0 +1,18 @@
+---
+import CardGallery from "./Card/CardGallery.astro";
+import PostCard from "./Card/PostCard.astro";
+const {posts} = Astro.props
+---
+{
+  posts.length ? (
+  <h2 class="sr-only">相關文章</h2>
+  <CardGallery>
+  {
+    posts.map((post) => {
+      return <PostCard post={post.attributes} />;
+    })
+  }
+  </CardGallery>
+  ) : ""
+
+}

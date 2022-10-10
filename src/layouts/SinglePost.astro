@@ -2,10 +2,12 @@
 import Base from "@layouts/Base.astro";
 import Category from "@components/Taxonomy/Category.astro";
 import Tags from "@components/Taxonomy/Tags.astro";
+import RecommendPost from "@components/recommendPost.astro";
 
 const { title, titletc, category, excerpt, author, tags } = Astro.props.post.attributes;
 const featuredImage = Astro.props.post.attributes.featuredImage.data;
 const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
+const recommendPost = Astro.props.post.attributes.recommendPost.data
 ---
 
 <link rel="stylesheet" href="/style/monokai.min.css">
@@ -62,6 +64,9 @@ const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
     </header>
     <div class="prose dark:prose-invert mx-8 md:mx-auto">
       <slot />
+    </div>
+    <div class="max-w-[1200px] mx-auto mt-16">
+      <RecommendPost posts={recommendPost}></RecommendPost>
     </div>
   </article>
 </Base>

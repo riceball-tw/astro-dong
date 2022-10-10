@@ -50,6 +50,42 @@ export async function getStaticPaths() {
               }
             }
           }
+          recommendPost{
+            data {
+              attributes {
+                slug
+                featuredIcon {
+                  data {
+                    attributes {
+                      url
+                      width
+                      height
+                    }
+                  }
+                }
+                date
+                titletc
+                excerpt
+                content
+                tags{
+                  data{
+                    attributes{
+                      name
+                      slug
+                    }
+                  }
+                }
+                category{
+                  data{
+                    attributes{
+                      name
+                      slug
+                    }
+                  }
+                }
+              }
+            }
+          }
           title
           titletc
           content

@@ -6,7 +6,7 @@ const { post } = Astro.props;
 const { featuredIcon, titletc, excerpt, slug, date, category, tags } = post;
 ---
 
-<li class="list-none">
+<li class="flex-1 min-w-max list-none">
   <Card>
     <article class="pt-8">
       <img
@@ -22,19 +22,17 @@ const { featuredIcon, titletc, excerpt, slug, date, category, tags } = post;
       <!-- Paragraph -->
       <p>{excerpt}</p>
       <!-- Footer -->
-      <div class="flex justify-between items-center mt-8">
+      <div class="flex flex-wrap justify-between items-center mt-8">
         <!-- Time -->
         <time class="inline-block text-sm opacity-60 hover:opacity-100">
           {date}
         </time>
-        <div>
-          <div class="flex">
+          <div class="flex flex-wrap">
             <!-- Category -->
             <Category category={category.data.attributes} />
             <!-- Tags -->
             <Tags tags={tags.data} />
           </div>
-        </div>
       </div>
     </article>
   </Card>
