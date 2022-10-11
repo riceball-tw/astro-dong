@@ -6,23 +6,25 @@ const { post } = Astro.props;
 const { featuredIcon, titletc, excerpt, slug, date, category, tags } = post;
 ---
 
-<li class="flex-1 min-w-max list-none">
+<li class="flex-1 self-stretch list-none min-w-[400px] ">
   <Card>
-    <article class="pt-8">
+    <article class="pt-8 flex flex-col gap-8 justify-between h-full">
       <img
         src={import.meta.env.URL_PREFIX + featuredIcon.data.attributes.url}
         class="absolute top-0 left-0 rounded-lg transform-gpu -translate-y-1/2 ml-4"
         width={featuredIcon.data.attributes.width}
         height={featuredIcon.data.attributes.height}
-        alt="文章圖片"
+        alt={featuredIcon.data.attributes.alternativeText}
       />
-      <a href=`/post/${slug}`>
-        <h3 class="text-2xl mb-4">{titletc}</h3>
-      </a>
-      <!-- Paragraph -->
-      <p>{excerpt}</p>
+      <div>
+        <a href=`/post/${slug}`>
+          <h3 class="text-2xl mb-4">{titletc}</h3>
+        </a>
+        <!-- Paragraph -->
+        <p>{excerpt}</p>
+      </div>
       <!-- Footer -->
-      <div class="flex flex-wrap justify-between items-center mt-8">
+      <div class="flex flex-wrap justify-between items-center">
         <!-- Time -->
         <time class="inline-block text-sm opacity-60 hover:opacity-100">
           {date}

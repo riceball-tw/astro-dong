@@ -15,6 +15,7 @@ const posts = await queryFetch(`{
                 url
                 width
                 height
+                alternativeText
               }
             }
           }
@@ -49,7 +50,7 @@ const description = "所有種類的文章";
 ---
 
 <Base title={title}>
-  <PageBanner description={description} />
+  <PageBanner title={title} description={description} />
   <section class="px-4">
     <CardGallery>
       {
