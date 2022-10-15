@@ -36,6 +36,8 @@
   }
 
   async function searchPost() {
+    const searchLoading = `<div>Loading</div>`
+    searchList.innerHTML = searchLoading
     const searchResult = await queryFetch(`query SearchPost($targetPost: String!){
     search(query: $targetPost) {
       posts {
@@ -55,6 +57,7 @@
       <li>
         <a href="/post/${item.attributes.slug}" class="px-4 py-8 hover:bg-primary-100 inline-block w-full">
           ${item.attributes.titletc}
+          <br>
           ${item.attributes.title}
         </a>
       </li>
@@ -66,7 +69,7 @@
       <li class="px-4 py-8">並沒有找到與 ${searchInput.value} 相關的文章</li>
       `;
       return;
-      }
+    }
     searchList.innerHTML = searchResultHTML
   }
 </script>

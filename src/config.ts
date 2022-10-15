@@ -35,4 +35,4 @@ export const SITE_SOCIAL = [
   },
 ];
 
-export const SITE_COPYRIGHT = `${SITE_BRAND}&trade;  All Right Reserved`;
+export const SITE_COPYRIGHT = `All Right Reserved`;

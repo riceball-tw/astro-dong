@@ -67,6 +67,10 @@ module.exports = {
       },
     },
     extend: {
+      gridTemplateColumns: {
+        'gallery': 'repeat(auto-fit, minmax(300px, 1fr))',
+        'gallery-lg': 'repeat(auto-fit, minmax(450px, 1fr))',
+      },
       typography: ({ theme }) => ({
         primary: {
           css: {

@@ -1,6 +1,6 @@
 ---
 import { queryFetch } from "@utils/queryFetch";
-const { copyright, socialLink } = await queryFetch(`{
+const { copyright, socialLink, trademark } = await queryFetch(`{
   siteConfig{
     data{
       attributes{
@@ -12,11 +12,14 @@ const { copyright, socialLink } = await queryFetch(`{
 
 ---
 
-<footer class="flex  md:flex-row justify-between sm:mb-0 mb-16">
+<footer class="flex items-center md:flex-row justify-between sm:mb-0 mb-16">
   <!-- Copyrihgt -->
-  <span class="p-4 md:text-base text-sm">
-    <Fragment set:html={copyright} />
-  </span>
+  <div class="flex p-4 md:text-base text-xs">
+    <span class="hidden md:block" set:html={trademark}>
+    </span>
+    <span set:html={copyright} >
+    </span>
+  </div>
 
   <div class="flex">
     <ul>
