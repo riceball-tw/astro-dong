@@ -4,7 +4,7 @@ import Category from "@components/Taxonomy/Category.astro";
 import Tags from "@components/Taxonomy/Tags.astro";
 import RecommendPost from "@components/recommendPost.astro";
 
-const { title, titletc, category, excerpt, author, tags } = Astro.props.post.attributes;
+const { title, titletc, category, excerpt, author, tags, themeColor } = Astro.props.post.attributes;
 const featuredImage = Astro.props.post.attributes.featuredImage.data;
 const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
 const recommendPost = Astro.props.post.attributes.recommendPost.data
@@ -50,13 +50,14 @@ const recommendPost = Astro.props.post.attributes.recommendPost.data
         <Tags tags={tags.data}></Tags>
         {
           featuredIcon ? (
-            <img
-              class="mx-auto absolute top-0 left-0 rounded-lg transform-gpu -translate-y-full -mt-8"
-              src={import.meta.env.URL_PREFIX + featuredIcon.attributes.url}
-              width={featuredIcon.attributes.width}
-              height={featuredIcon.attributes.height}
-              alt={featuredIcon.attributes.alternativeText}
-            />
+            <div class="mx-auto absolute top-0 left-0 rounded-lg transform-gpu -translate-y-full -mt-8" style=`background-color: ${themeColor ?? "white"}`>
+              <img
+                src={import.meta.env.URL_PREFIX + featuredIcon.attributes.url}
+                width={featuredIcon.attributes.width}
+                height={featuredIcon.attributes.height}
+                alt={featuredIcon.attributes.alternativeText}
+              />
+            </div>
           ) : (
             ""
           )

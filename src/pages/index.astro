@@ -21,6 +21,7 @@ const posts = await queryFetch(`{
     posts(pagination: { start:0, limit: 3}) {
       data {
         attributes {
+          themeColor
           featuredIcon {
             data {
               attributes {
@@ -82,14 +83,14 @@ const posts = await queryFetch(`{
   </HeroBanner>
   <section class="px-4">
     <div
-      class="grid md:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4 mt-8 md:mt-0"
+      class="grid lg:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4 mt-8 md:mt-0"
     >
       <!-- Intro -->
       <Card>
         <img
           src="/images/me/riceball.webp"
           class="bg-gradient-to-b from-primary-50 to-primary-900 rounded-lg absolute top-0 left-0 transform-gpu ml-6 -translate-y-1/2"
-          alt="一顆在旋轉飯糰(我的個人頭貼)"
+          alt="一顆在旋轉飯糰(個人頭貼)"
           width="64"
           height="64"
         />

@@ -3,19 +3,20 @@ import Card from "@components/Card/Card.astro";
 import Category from "@components/Taxonomy/Category.astro";
 import Tags from "@components/Taxonomy/Tags.astro";
 const { post } = Astro.props;
-const { featuredIcon, titletc, excerpt, slug, date, category, tags } = post;
+const { featuredIcon, titletc, excerpt, slug, date, category, tags, themeColor } = post;
 ---
-
 <li class="flex-1 self-stretch list-none">
   <Card>
     <article class="pt-8 flex flex-col gap-8 justify-between h-full">
-      <img
-        src={import.meta.env.URL_PREFIX + featuredIcon.data.attributes.url}
-        class="absolute top-0 left-0 rounded-lg transform-gpu -translate-y-1/2 ml-4"
-        width={featuredIcon.data.attributes.width}
-        height={featuredIcon.data.attributes.height}
-        alt={featuredIcon.data.attributes.alternativeText}
-      />
+      <!-- Featured-Icon -->
+      <div style=`background-color: ${themeColor ?? "white"}` class="absolute top-0 left-0 rounded-lg overflow-hidden transform-gpu -translate-y-1/2 ml-4">
+        <img
+          src={import.meta.env.URL_PREFIX + featuredIcon.data.attributes.url}
+          width={featuredIcon.data.attributes.width}
+          height={featuredIcon.data.attributes.height}
+          alt={featuredIcon.data.attributes.alternativeText}
+        />
+      </div>
       <div>
         <a href=`/post/${slug}`>
           <h3 class="text-2xl mb-4">{titletc}</h3>
