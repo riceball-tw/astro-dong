@@ -12,6 +12,7 @@ const description = `搜尋文章標籤`;
   posts(filters: {tags:{name:{eq:$targetTag}}}){
     data {
       attributes {
+        themeColor
         featuredIcon {
           data {
             attributes {

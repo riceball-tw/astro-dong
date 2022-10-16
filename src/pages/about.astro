@@ -3,6 +3,19 @@ import Base from "@layouts/Base.astro";
 import HeroBanner from "@components/Banner/HeroBanner.astro";
 import { marked } from "marked";
 import { queryFetch } from "@utils/queryFetch";
+import Card from "@components/Card/Card.astro";
+
+const { socialLink } = await queryFetch(`{
+  siteConfig{
+    data{
+      attributes{
+        global
+      }
+    }
+  }
+}`).then((result) => result.data.siteConfig.data.attributes.global.brand);
+
+console.log(socialLink);
 
 const { bannerHeading, bioTitle, bio } = await queryFetch(`{
   about{
@@ -31,7 +44,7 @@ const description = "關於我們";
       alt="About Banner"
     />
   </HeroBanner>
-  <section class="mx-8 grid grid-cols-1 gap-8 md:grid-cols-3 mb-40">
+  <section class="mx-8 grid grid-cols-1 gap-8 md:grid-cols-3 mb-36">
     <!-- Intro -->
     <h2 class="md:text-3xl text-2xl">
       <Fragment set:html={marked.parse(bioTitle)} />
@@ -42,5 +55,23 @@ const description = "關於我們";
     >
       <p set:html={marked.parse(bio)}></p>
     </div>
+  </section>
+  <section class="mx-8 grid grid-cols-1 gap-8 md:grid-cols-3 mb-36">
+    <!-- Intro -->
+    <h2 class="md:text-3xl text-2xl mb-8">
+      >_ 其他社群與聯絡管道
+    </h2>
+    <ul class="flex flex-wrap gap-8">
+      {
+        socialLink.map((social) => (
+          <Card>
+            <a class="text-center p-4 inline-block" href={social.url}>
+              <img width="40" height="40" class="mb-8 mx-auto filter dark:invert" src={social.thumbnail} alt=`${social.fullName} LOGO`>
+              {social.fullName}
+            </a>
+          </Card>
+        ))
+      }
+    </ul>
   </section>
 </Base>

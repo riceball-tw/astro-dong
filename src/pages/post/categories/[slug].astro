@@ -12,6 +12,7 @@ const filtedPosts = await queryFetch(`query Category ($targetCategory: String!){
   posts(filters: {category:{name:{eq:$targetCategory}}}){
     data {
       attributes {
+        themeColor
         featuredIcon {
           data {
             attributes {
