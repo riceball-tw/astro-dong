@@ -50,7 +50,7 @@ const recommendPost = Astro.props.post.attributes.recommendPost.data
         <Tags tags={tags.data}></Tags>
         {
           featuredIcon ? (
-            <div class="mx-auto absolute top-0 left-0 rounded-lg transform-gpu -translate-y-full -mt-8" style=`background-color: ${themeColor ?? "white"}`>
+            <div class="mx-auto absolute top-0 left-0 rounded-lg transform-gpu -translate-y-full -mt-8 overflow-hidden" style=`background-color: ${themeColor ?? "white"}`>
               <img
                 src={import.meta.env.URL_PREFIX + featuredIcon.attributes.url}
                 width={featuredIcon.attributes.width}
@@ -64,7 +64,7 @@ const recommendPost = Astro.props.post.attributes.recommendPost.data
         }
       </div>
     </header>
-    <div class="prose dark:prose-invert mx-8 md:mx-auto">
+    <div class="prose prose-lg dark:prose-invert mx-8 md:mx-auto">
       <slot />
     </div>
     <div class="max-w-[1200px] mx-auto mt-16">
