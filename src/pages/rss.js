@@ -5,38 +5,9 @@ const posts = await queryFetch(`{
   posts {
     data {
       attributes {
-        themeColor
-        slug
-        featuredIcon {
-          data {
-            attributes {
-              url
-              width
-              height
-              alternativeText
-            }
-          }
-        }
-        date
         titletc
+        publishedAt
         excerpt
-        content
-        tags{
-          data{
-            attributes{
-              name
-              slug
-            }
-          }
-        }
-        category{
-          data{
-            attributes{
-              name
-              slug
-            }
-          }
-        }
       }
     }
   }
@@ -50,9 +21,10 @@ export const get = () =>
     site: import.meta.env.SITE,
     items: posts.map(post => (
       {
-        link: `${import.meta.env.SITE}posts/${post.attributes.slug}`,
+        link: `${import.meta.env.SITE}post/${post.attributes.slug}`,
         title: post.attributes.titletc,
-        pubDate: post.attributes.publishedAt
+        pubDate: post.attributes.publishedAt,
+        description: post.attributes.excerpt
       }
     ))
   });
