@@ -8,6 +8,7 @@ const posts = await queryFetch(`{
         titletc
         publishedAt
         excerpt
+        slug
       }
     }
   }
