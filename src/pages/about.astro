@@ -15,8 +15,6 @@ const { socialLink } = await queryFetch(`{
   }
 }`).then((result) => result.data.siteConfig.data.attributes.global.brand);
 
-console.log(socialLink);
-
 const { bannerHeading, bioTitle, bio } = await queryFetch(`{
   about{
   	data{
