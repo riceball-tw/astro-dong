@@ -36,7 +36,7 @@
   }
 
   async function searchPost() {
-    const searchLoading = `<div>Loading</div>`
+    const searchLoading = `<div class="py-8">加載中……</div>`
     searchList.innerHTML = searchLoading
     const searchResult = await queryFetch(`query SearchPost($targetPost: String!){
     search(query: $targetPost) {
@@ -62,7 +62,8 @@
         </a>
       </li>
       `
-    ))
+    ).join(""))
+    
 
     if (searchResult.length === 0){
       searchList.innerHTML = `

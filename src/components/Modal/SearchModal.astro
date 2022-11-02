@@ -7,7 +7,8 @@ import Card from "@components/Card/Card.astro";
     <form data-search-form class="dark:bg-primary-50 text-primary-800 rounded-lg overflow-hidden mx-4 dark:text-primary-100">
       <Card class="flex gap-2 flex-col">
         <input autocomplete="off" class="w-full text-xl md:text-3xl py-4 outline-none bg-transparent" data-search-input name="searchInput" type="text" placeholder="請輸入要查閱的文章……">
-        <ul data-search-list>
+        <ul style="max-height:300px;" class="overflow-y-auto" data-search-list>
+
         </ul>
 
         <hr class="mb-4 text-primary-300 dark:text-primary-700">
