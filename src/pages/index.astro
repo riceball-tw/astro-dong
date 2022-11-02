@@ -96,23 +96,25 @@ const posts = await queryFetch(`{
         />
         <div class="flex flex-col justify-between h-full pt-8">
           <h2 class="sr-only">近期文章</h2>
-          <p class="text-xl mb-8">{info}</p>
-          <ButtonMinium href="mailto:bottle200918@gmail.com">
-            提供意見
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-6 h-6 inline-block"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-            </svg>
-          </ButtonMinium>
+          <p class="text-xl mb-16">{info}</p>
+          <div class="-mx-6 -mb-6 px-6 py-6 border-t border-primary-200 text-left dark:border-primary-700 ">
+            <ButtonMinium href="#">
+              提供意見
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 inline-block"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+              </svg>
+            </ButtonMinium>
+          </div>
         </div>
       </Card>
 
