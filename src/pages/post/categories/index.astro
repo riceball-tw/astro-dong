@@ -1,8 +1,9 @@
 ---
 import Base from "@layouts/Base.astro";
 import PageBanner from "@components/Banner/PageBanner.astro";
-import Pill from "@components/Pill.astro";
+import Card from "@components/Card/Card.astro";
 import { queryFetch } from "@utils/queryFetch";
+import CardGallery from "@components/Card/CardGallery.astro";
 const categories = await queryFetch(`{
 	categories{
     data{
@@ -14,23 +15,27 @@ const categories = await queryFetch(`{
   }
 }
 `).then((result) => result.data.categories.data);
-const title = "文章分類";
+const title = "文章種類分類";
 const description = "所有文章的大分類";
 ---
 
 <Base>
   <PageBanner title={title} description={description} />
-  {
-    categories.map((category) => (
-      <ul>
-        <li class="text-3xl">
-          <Pill>
-            <a href={`/post/categories/${category.attributes.slug}`}>
-              {category.attributes.name}
-            </a>
-          </Pill>
-        </li>
-      </ul>
-    ))
-  }
+  <div class="mx-4">
+    <CardGallery>
+    {
+      categories.map((category) => (
+        <ul>
+          <li class="text-3xl">
+              <Card>
+                <a href={`/post/categories/${category.attributes.slug}`}>
+                  {category.attributes.name}
+                </a>
+              </Card>
+          </li>
+        </ul>
+      ))
+    }
+    </CardGallery>
+  </div>
 </Base>

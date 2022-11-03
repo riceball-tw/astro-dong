@@ -4,7 +4,7 @@ import Card from "@components/Card/Card.astro";
 ---
 
   <div data-search-modal class="searchModal--disable fixed top-0 left-0 w-full h-full justify-center items-center filter backdrop-blur-xl ">
-    <form data-search-form class="dark:bg-primary-50 text-primary-800 rounded-lg overflow-hidden mx-4 dark:text-primary-100">
+    <form data-search-form class="text-primary-800 rounded-lg overflow-hidden mx-4 dark:text-primary-100 bg-primary-50 dark:bg-primary-800">
       <Card class="flex gap-2 flex-col">
         <input autocomplete="off" class="w-full text-xl md:text-3xl py-4 outline-none bg-transparent" data-search-input name="searchInput" type="text" placeholder="請輸入要查閱的文章……">
         <ul style="max-height:300px;" class="overflow-y-auto" data-search-list>

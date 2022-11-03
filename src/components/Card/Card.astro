@@ -1,5 +1,18 @@
+---
+const {themeColor} = Astro.props
+const cardColor = themeColor ? themeColor + 40 : "inherit"
+---
+
 <div
-  class="transition bg-opacity-60 hover:bg-opacity-100 relative block p-6 bg-white rounded-lg border border-primary-200 dark:bg-primary-800 dark:border-primary-700 dark:hover:bg-primary-700"
+  class=`transition bg-opacity-60 hover:bg-opacity-100 relative block p-6 bg-white rounded-lg border border-primary-200 dark:border-primary-700 card bg-primary-50 dark:bg-primary-800`
 >
+  
   <slot />
 </div>
+
+<style define:vars={{ cardColor }}>
+  .card:hover {
+    background-color: var(--cardColor);
+    border-color: var(--cardColor)
+  }
+</style>
