@@ -67,8 +67,8 @@ const recommendPost = Astro.props.post.attributes.recommendPost.data
     <div class="prose prose-lg hover:prose-p:text-black hover:prose-li:bg-primary-200 dark:hover:prose-p:text-white dark:hover:prose-li:bg-white dark:hover:prose-li:bg-primary-700 dark:hover:prose-li:text-white prose-li:rounded dark:prose-invert mx-8 md:mx-auto">
       <slot />
     </div>
-    <div class="max-w-[1200px] mx-auto mt-16">
-      <RecommendPost posts={recommendPost}></RecommendPost>
-    </div>
   </article>
+  <div class="max-w-[1200px] mx-auto mt-16">
+    <RecommendPost posts={recommendPost}></RecommendPost>
+  </div>
 </Base>
