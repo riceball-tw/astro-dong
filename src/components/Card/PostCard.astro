@@ -11,7 +11,7 @@ const { featuredIcon, titletc, excerpt, slug, date, category, tags, themeColor} 
     <article class="pt-8 flex flex-col gap-8 justify-between h-full">
       <!-- Featured-Icon -->
       <div 
-      style={`background-color: ${themeColor ? themeColor : white}`}
+      style={`background-color: ${themeColor ? themeColor : "white"}`}
       class="absolute top-0 left-0 rounded-lg overflow-hidden transform-gpu -translate-y-1/2 ml-4">
         <img
           src={import.meta.env.URL_PREFIX + featuredIcon.data.attributes.url}
