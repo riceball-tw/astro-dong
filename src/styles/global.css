@@ -22,15 +22,5 @@
 }
 
 @layer base {
-  .bg-default {
-    @apply bg-primary-50 from-white dark:bg-primary-800 bg-gradient-to-b dark:from-primary-800 dark:to-primary-900;
-  }
 
-  .text-default {
-    @apply text-primary-800 dark:text-primary-50;
-  }
-
-  .border-default {
-    @apply border-black dark:border-primary-600;
-  }
 }

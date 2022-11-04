@@ -13,7 +13,15 @@ const { title, description, image } = Astro.props;
       <Head title={title} description={description} image={image} />
     </slot>
   </head>
-  <body class="bg-default text-default dark:bg-[url('/images/hero-banner/site-gradient-dark.svg')] bg-[url('/images/hero-banner/site-gradient-light.svg')] bg-no-repeat bg-cover bg-center">
+  <body class="
+  bg-primary-50 from-white dark:bg-primary-800  dark:from-primary-800 dark:to-primary-900
+
+  text-primary-800 dark:text-primary-50
+
+  border-debug dark:border-debug
+  
+    dark:bg-[url('/images/hero-banner/site-gradient-dark.svg')] bg-[url('/images/hero-banner/site-gradient-light.svg')] bg-no-repeat bg-cover bg-center 
+  ">
     <Navbar />
     <div class="min-h-screen">
       <slot />
