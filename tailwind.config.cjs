@@ -2,9 +2,12 @@
 module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   darkMode: "class",
+  important: true,
   theme: {
     fontFamily: {
       mono: [
+        "Fira Code",
+        "JetBrains Mono",
         "ui-monospace",
         "SFMono-Regular",
         "Menlo",
@@ -72,7 +75,7 @@ module.exports = {
         'gallery-lg': 'repeat(auto-fit, minmax(450px, 1fr))',
       },
       typography: ({ theme }) => ({
-        primary: {
+        DEFAULT: {
           css: {
             "--tw-prose-body": theme("colors.primary[800]"),
             "--tw-prose-headings": theme("colors.primary[900]"),
@@ -90,6 +93,7 @@ module.exports = {
             "--tw-prose-pre-bg": theme("colors.primary[900]"),
             "--tw-prose-th-borders": theme("colors.primary[300]"),
             "--tw-prose-td-borders": theme("colors.primary[200]"),
+
             "--tw-prose-invert-body": theme("colors.primary[200]"),
             "--tw-prose-invert-headings": theme("colors.white"),
             "--tw-prose-invert-lead": theme("colors.primary[300]"),
@@ -106,8 +110,50 @@ module.exports = {
             "--tw-prose-invert-pre-bg": "rgb(0 0 0 / 50%)",
             "--tw-prose-invert-th-borders": theme("colors.primary[600]"),
             "--tw-prose-invert-td-borders": theme("colors.primary[700]"),
+
+            "--tw-prose-table-bg": theme("colors.white"),
+            "--tw-prose-invert-table-bg": theme("colors.primary[900]"),
+
+            img: {
+              borderRadius: theme("borderRadius.lg")
+            },
+
+            // Remove code's before and after backtick
+            'code::before': false,
+            'code::after': false,
+            'blockquote p:first-of-type::before': false,
+            'blockquote p:last-of-type::after': false,
+            pre: false,
+            code: false,
+            'pre code': false,
+            'code::before': false,
           },
         },
+        lg: {
+          css: {
+            blockquote: {
+              textAlign: "center",
+              paddingLeft: "none",
+              border: "none",
+              padding: "4rem 2rem",
+              fontSize: "1.5rem",
+              fontStyle: "normal"
+            },
+            table: {
+              display: "inline-block",
+              padding: "2rem",
+              borderRadius: theme("borderRadius.lg")
+            },
+            td: {
+              padding: theme("spacing.5")
+            },
+            th: {
+              paddingLeft: theme("spacing.5"),
+              paddingRight: theme("spacing.5"),
+            }
+
+          }
+        }
       }),
     },
   },
