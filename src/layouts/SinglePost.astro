@@ -3,20 +3,20 @@ import Base from "@layouts/Base.astro";
 import Category from "@components/Taxonomy/Category.astro";
 import Tags from "@components/Taxonomy/Tags.astro";
 import RecommendPost from "@components/recommendPost.astro";
+// import "highlight.js/styles/base16"
 
 const { title, titletc, category, excerpt, author, tags, themeColor } = Astro.props.post.attributes;
 const featuredImage = Astro.props.post.attributes.featuredImage.data;
 const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
 const recommendPost = Astro.props.post.attributes.recommendPost.data
-
 ---
 
-<link rel="stylesheet" href="/style/monokai.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
 <script is:inline defer src="/js/highlight.min.js"></script>
 
 <script>hljs.highlightAll();</script>
 
-<Base title={titletc} description={excerpt} image={featuredImage}>
+<Base title={titletc} description={excerpt} image={featuredImage ?? featuredIcon}>
   <article class="mt-40 prose-lg">
     <header class="mb-16 not-prose max-w-prose md:mx-auto mx-8">
       <!-- FeaturedImage -->
