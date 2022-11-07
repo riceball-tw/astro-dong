@@ -117,7 +117,9 @@ module.exports = {
             img: {
               borderRadius: theme("borderRadius.lg")
             },
-
+            video: {
+              borderRadius: theme("borderRadius.lg")
+            },
             // Remove code's before and after backtick
             'code::before': false,
             'code::after': false,
@@ -150,6 +152,15 @@ module.exports = {
             th: {
               paddingLeft: theme("spacing.5"),
               paddingRight: theme("spacing.5"),
+            },
+            code: {
+              borderRadius: theme("borderRadius.lg"),
+            },
+            pre: {
+              paddingTop: "none",
+              paddingRight: "none",
+              paddingBottom: "none",
+              paddingLeft: "none"
             }
 
           }
