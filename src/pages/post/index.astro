@@ -5,7 +5,7 @@ import { queryFetch } from "@utils/queryFetch";
 import CardGallery from "@components/Card/CardGallery.astro";
 import PostCard from "@components/Card/PostCard.astro";
 const posts = await queryFetch(`{
-    posts(sort: "createdAt:desc") {
+    posts(sort: "createdAt:desc" pagination: {limit: 9999}) {
       data {
         attributes {
           themeColor
