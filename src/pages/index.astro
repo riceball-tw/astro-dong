@@ -68,17 +68,30 @@ const posts = await queryFetch(`{
     >
       <!-- Intro -->
       <Card>
-        <img
-          src="/images/me/riceball.webp"
-          class="bg-primary-500 from-primary-50 to-primary-900 rounded-lg absolute top-0 left-0 transform-gpu ml-6 -translate-y-1/2"
-          alt="一顆在旋轉飯糰(個人頭貼)"
-          width="64"
-          height="64"
-        />
+        <div class="rounded-lg absolute top-0 left-0 transform-gpu ml-6 -translate-y-1/2 bg-primary-300">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_102_267)">
+          <g clip-path="url(#clip1_102_267)">
+          <path d="M29.4 36.6L24.8 32L29.4 27.4L28 26L22 32L28 38L29.4 36.6ZM34.6 36.6L39.2 32L34.6 27.4L36 26L42 32L36 38L34.6 36.6V36.6Z" fill="black"/>
+          </g>
+          </g>
+          <defs>
+          <clipPath id="clip0_102_267">
+          <rect width="64" height="64" fill="white"/>
+          </clipPath>
+          <clipPath id="clip1_102_267">
+          <rect width="24" height="24" fill="white" transform="translate(20 20)"/>
+          </clipPath>
+          </defs>
+          </svg>
+        </div>
+
+
+
         <div class="flex flex-col justify-between h-full pt-8 ">
           <h2 class="sr-only">近期文章</h2>
           <p class="text-xl mb-16">{info}</p>
-          <a href="https://6lq5056dq0f.typeform.com/to/lxR072rZ" class="-mx-6 -mb-6 px-6 py-6 border-t border-t-primary-200 dark:border-t-primary-500 border-primary-200 text-left rounded-br-lg rounded-bl-lg hover:bg-primary-200 dark:hover:bg-primary-600">
+          <a href="https://6lq5056dq0f.typeform.com/to/lxR072rZ" class="-mx-6 -mb-6 px-6 py-6 border-t border-t-primary-200 dark:border-t-primary-600 border-primary-200 text-left rounded-br-lg rounded-bl-lg hover:bg-primary-200 dark:hover:bg-primary-600">
 
               提供意見
               <svg
