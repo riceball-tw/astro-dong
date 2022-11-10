@@ -92,7 +92,7 @@ module.exports = {
             "--tw-prose-pre-code": theme("colors.primary[100]"),
             "--tw-prose-pre-bg": theme("colors.primary[900]"),
             "--tw-prose-th-borders": theme("colors.primary[300]"),
-            "--tw-prose-td-borders": theme("colors.primary[200]"),
+            "--tw-prose-td-borders": theme("colors.primary[300]"),
 
             "--tw-prose-invert-body": theme("colors.primary[200]"),
             "--tw-prose-invert-headings": theme("colors.white"),
@@ -109,10 +109,8 @@ module.exports = {
             "--tw-prose-invert-pre-code": theme("colors.primary[300]"),
             "--tw-prose-invert-pre-bg": "rgb(0 0 0 / 50%)",
             "--tw-prose-invert-th-borders": theme("colors.primary[600]"),
-            "--tw-prose-invert-td-borders": theme("colors.primary[700]"),
+            "--tw-prose-invert-td-borders": theme("colors.primary[600]"),
 
-            "--tw-prose-table-bg": theme("colors.white"),
-            "--tw-prose-invert-table-bg": theme("colors.primary[900]"),
 
             img: {
               borderRadius: theme("borderRadius.lg")
@@ -121,14 +119,10 @@ module.exports = {
               borderRadius: theme("borderRadius.lg")
             },
             // Remove code's before and after backtick
-            'code::before': false,
-            'code::after': false,
-            'blockquote p:first-of-type::before': false,
-            'blockquote p:last-of-type::after': false,
-            pre: false,
-            code: false,
-            'pre code': false,
-            'code::before': false,
+
+            'blockquote p:first-of-type::before': true,
+            'blockquote p:last-of-type::after': true,
+
           },
         },
         lg: {
@@ -139,19 +133,51 @@ module.exports = {
               border: "none",
               padding: "4rem 2rem",
               fontSize: "1.5rem",
-              fontStyle: "normal"
+              fontStyle: "normal",
+              "&::before": {
+                content: "'* * *'",
+                opacity: .3
+              },
+              "&::after": {
+                content: "'* * *'",
+                opacity: .3
+              },
             },
             table: {
               display: "inline-block",
-              padding: "2rem",
-              borderRadius: theme("borderRadius.lg")
+              padding: theme("spacing.8"),
+              overflow: "auto",
+              whiteSpace: "nowrap",
+              borderRadius: theme("borderRadius.lg"),
+              borderWidth: theme("width.px"),
+              scrollbarWidth: "thin",
+              backgroundColor: theme("colors.primary[100]"),
+              borderColor: theme("colors.primary[200]"),
+            },
+            figcaption: {
+              borderWidth: theme("width.px"),
+              borderTop: "none",
+              padding: theme("spacing.4"),
+              borderBottomRightRadius: theme("borderRadius.lg"),
+              borderBottomLeftRadius: theme("borderRadius.lg"),
+              marginTop: "-12px",
+              backgroundColor: theme("colors.primary[100]"),
+              borderColor: theme("colors.primary[200]"),
+              "&:hover": {
+                backgroundColor: theme("colors.primary[200]")
+              }
+            },
+            tr: {
+              "&:hover" : {
+                borderRadius: theme("borderRadius.lg"),
+                backgroundColor: theme("colors.primary[200]")
+              },
             },
             td: {
               padding: theme("spacing.5")
             },
             th: {
-              paddingLeft: theme("spacing.5"),
-              paddingRight: theme("spacing.5"),
+              padding: theme("spacing.5"),
             },
             code: {
               borderRadius: theme("borderRadius.lg"),
@@ -164,7 +190,32 @@ module.exports = {
             }
 
           }
-        }
+        },
+        dark: {
+          css: {
+            table: {
+              backgroundColor: theme("colors.primary[800]"),
+              borderColor: theme("colors.primary[700]"),
+              "&:hover": {
+                borderColor: theme("colors.primary[600]"),
+                backgroundColor: theme("colors.primary[700]")
+              }
+            },
+            figcaption: {
+              backgroundColor: theme("colors.primary[800]"),
+              borderColor: theme("colors.primary[600]"),
+              "&:hover": {
+                backgroundColor: theme("colors.primary[700]")
+              }
+            },
+            tr: {
+              "&:hover" : {
+                borderRadius: theme("borderRadius.lg"),
+                backgroundColor: theme("colors.primary[800]")
+              },
+            },
+          }
+        },
       }),
     },
   },

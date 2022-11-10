@@ -11,7 +11,7 @@ const featuredIcon = Astro.props.post.attributes.featuredIcon.data;
 const recommendPost = Astro.props.post.attributes.recommendPost.data
 ---
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark-reasonable.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/a11y-dark.min.css">
 <script is:inline defer src="/js/highlight.min.js"></script>
 
 <script>hljs.highlightAll();</script>
@@ -64,7 +64,7 @@ const recommendPost = Astro.props.post.attributes.recommendPost.data
         }
       </div>
     </header>
-    <div class="prose prose-lg hover:prose-p:text-black hover:prose-li:bg-primary-200 dark:hover:prose-p:text-white dark:hover:prose-li:bg-white dark:hover:prose-li:bg-primary-700 dark:hover:prose-li:text-white prose-li:rounded dark:prose-invert mx-8 md:mx-auto prose-table:bg-white dark:prose-table:bg-primary-900">
+    <div class="mx-8 md:mx-auto prose prose-lg dark:prose-invert dark:prose-dark">
       <slot />
     </div>
   </article>
