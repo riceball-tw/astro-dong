@@ -122,6 +122,8 @@ module.exports = {
 
             'blockquote p:first-of-type::before': true,
             'blockquote p:last-of-type::after': true,
+            'code::before': false,
+            'code::after': false,
 
           },
         },
@@ -151,7 +153,6 @@ module.exports = {
               borderRadius: theme("borderRadius.lg"),
               borderWidth: theme("width.px"),
               scrollbarWidth: "thin",
-              backgroundColor: theme("colors.primary[100]"),
               borderColor: theme("colors.primary[200]"),
             },
             figcaption: {
@@ -181,12 +182,17 @@ module.exports = {
             },
             code: {
               borderRadius: theme("borderRadius.lg"),
+              scrollbarWidth: "thin",
             },
             pre: {
               paddingTop: "none",
               paddingRight: "none",
               paddingBottom: "none",
               paddingLeft: "none"
+            },
+            ":not(pre) > code": {
+              padding: theme("spacing.1"),
+              backgroundColor: theme("colors.primary[200]"),
             }
 
           }
@@ -198,7 +204,6 @@ module.exports = {
               borderColor: theme("colors.primary[700]"),
               "&:hover": {
                 borderColor: theme("colors.primary[600]"),
-                backgroundColor: theme("colors.primary[700]")
               }
             },
             figcaption: {
@@ -211,9 +216,12 @@ module.exports = {
             tr: {
               "&:hover" : {
                 borderRadius: theme("borderRadius.lg"),
-                backgroundColor: theme("colors.primary[800]")
+                backgroundColor: theme("colors.primary[700]")
               },
             },
+            ":not(pre) > code": {
+              backgroundColor: theme("colors.primary[800]"),
+            }
           }
         },
       }),
