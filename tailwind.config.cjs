@@ -112,6 +112,7 @@ module.exports = {
             "--tw-prose-invert-td-borders": theme("colors.primary[600]"),
 
 
+            
             img: {
               borderRadius: theme("borderRadius.lg")
             },
