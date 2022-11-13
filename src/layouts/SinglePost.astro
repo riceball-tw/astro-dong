@@ -3,7 +3,7 @@ import Base from "@layouts/Base.astro";
 import Category from "@components/Taxonomy/Category.astro";
 import Tags from "@components/Taxonomy/Tags.astro";
 import RecommendPost from "@components/recommendPost.astro";
-// import "highlight.js/styles/base16"
+import NewsletterBanner from "@components/Banner/NewsletterBanner.astro";
 
 const { title, titletc, category, excerpt, author, tags, themeColor } = Astro.props.post.attributes;
 const featuredImage = Astro.props.post.attributes.featuredImage.data;
@@ -17,60 +17,66 @@ const recommendPost = Astro.props.post.attributes.recommendPost.data
 <script>hljs.highlightAll();</script>
 
 <Base title={titletc} description={excerpt} image={featuredImage ?? featuredIcon} themeColor={themeColor}>
-  <article class="mt-40 prose-lg">
-    <header class="mb-16 not-prose max-w-prose md:mx-auto mx-8">
-      <!-- FeaturedImage -->
-      {
-        featuredImage ? (
-          <img
-            class="mx-auto mb-16"
-            src={import.meta.env.URL_PREFIX + featuredImage.attributes.url}
-            width={featuredImage.attributes.width}
-            height={featuredImage.attributes.height}
-            alt={featuredImage.attributes.alternativeText}
-          />
-        ) : (
-          ""
-        )
-      }
-      <div class="relative">
-        <!-- Heading -->
-        <h1>
-          <div class="mb-2">{title}</div>
-          <div class="text-4xl mb-4 font-bold">{titletc}</div>
-        </h1>
-        <!-- Author -->
-        <!-- <div class="mb-8 static lg:absolute lg:top-0 lg:left-0 lg:transform-gpu lg:-translate-x-full lg:pr-8 opacity-40">
-          作者：{author.data.attributes.name}
-          <br>
-        </div> -->
-        <!-- Categories -->
-        <Category category={category.data.attributes} />
-        <!-- Tags -->
-        <Tags tags={tags.data}></Tags>
+  <main>
+    <article class="mt-40 prose-lg">
+      <header class="mb-16 not-prose max-w-prose md:mx-auto mx-8">
+        <!-- FeaturedImage -->
         {
-          featuredIcon ? (
-            <div class="mx-auto absolute top-0 left-0 rounded-lg transform-gpu -translate-y-full -mt-8 overflow-hidden" style=`background-color: ${themeColor ?? "white"}`>
-              <img
-                src={import.meta.env.URL_PREFIX + featuredIcon.attributes.url}
-                width={featuredIcon.attributes.width}
-                height={featuredIcon.attributes.height}
-                alt={featuredIcon.attributes.alternativeText}
-              />
-            </div>
+          featuredImage ? (
+            <img
+              class="mx-auto mb-16"
+              src={import.meta.env.URL_PREFIX + featuredImage.attributes.url}
+              width={featuredImage.attributes.width}
+              height={featuredImage.attributes.height}
+              alt={featuredImage.attributes.alternativeText}
+            />
           ) : (
             ""
           )
         }
+        <div class="relative">
+          <!-- Heading -->
+          <h1>
+            <div class="mb-2">{title}</div>
+            <div class="text-4xl mb-4 font-bold">{titletc}</div>
+          </h1>
+          <!-- Author -->
+          <!-- <div class="mb-8 static lg:absolute lg:top-0 lg:left-0 lg:transform-gpu lg:-translate-x-full lg:pr-8 opacity-40">
+            作者：{author.data.attributes.name}
+            <br>
+          </div> -->
+          <!-- Categories -->
+          <Category category={category.data.attributes} />
+          <!-- Tags -->
+          <Tags tags={tags.data}></Tags>
+          {
+            featuredIcon ? (
+              <div class="mx-auto absolute top-0 left-0 rounded-lg transform-gpu -translate-y-full -mt-8 overflow-hidden" style=`background-color: ${themeColor ?? "white"}`>
+                <img
+                  src={import.meta.env.URL_PREFIX + featuredIcon.attributes.url}
+                  width={featuredIcon.attributes.width}
+                  height={featuredIcon.attributes.height}
+                  alt={featuredIcon.attributes.alternativeText}
+                />
+              </div>
+            ) : (
+              ""
+            )
+          }
+        </div>
+      </header>
+      <div class="mx-8 md:mx-auto prose prose-lg dark:prose-invert dark:prose-dark">
+        <slot />
       </div>
-    </header>
-    <div class="mx-8 md:mx-auto prose prose-lg dark:prose-invert dark:prose-dark">
-      <slot />
-    </div>
-  </article>
+    </article>
+  </main>
+  <!-- After Reading Section -->
   <div class="max-w-[1200px] mx-auto mt-16">
+    <!-- Recommend Posts -->
     <RecommendPost posts={recommendPost}></RecommendPost>
+    <NewsletterBanner/>
   </div>
+
 </Base>
 
 <!-- <style is:inline>
