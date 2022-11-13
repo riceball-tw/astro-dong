@@ -9,7 +9,6 @@ const { copyright,copyrightUrl, socialLink } = await queryFetch(`{
     }
   }
 }`).then((result) => result.data.siteConfig.data.attributes.global.brand);
-console.log(copyright);
 ---
 
 <footer class="flex  items-center mt-16 justify-between sm:mb-0 mb-16">
