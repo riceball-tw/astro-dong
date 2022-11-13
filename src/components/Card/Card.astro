@@ -1,7 +1,9 @@
 ---
-const {themeColor} = Astro.props
+const {themeColor, themeColorBg} = Astro.props
 const cardBody = themeColor ? themeColor + 40 : ""
 const cardBorder = themeColor ? themeColor + 40 : ""
+const cardBg = themeColorBg ? themeColorBg : ""
+console.log(cardBg) 
 ---
 
   <div
@@ -21,9 +23,9 @@ const cardBorder = themeColor ? themeColor + 40 : ""
   </div>
 
 
-<style define:vars={{ cardBody, cardBorder }}>
+<style define:vars={{ cardBody, cardBorder, cardBg }}>
   .card {
-    
+    background-color: var(--cardBg)
   }
   .card:hover {
     background-color: var(--cardBody);
