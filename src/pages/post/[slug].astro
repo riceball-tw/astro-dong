@@ -3,7 +3,7 @@ import SinglePost from "@layouts/SinglePost.astro";
 import { queryFetch } from "@utils/queryFetch";
 export async function getStaticPaths() {
   const posts = await queryFetch(`{
-    posts(sort: "createdAt:desc" pagination: {limit: 9999}) {
+    posts(sort: "date:desc" pagination: {limit: 9999}) {
       data {
         attributes {
           themeColor

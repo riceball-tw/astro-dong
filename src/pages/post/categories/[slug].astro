@@ -9,7 +9,7 @@ const title = `搜尋文章分類：${categoryName}`;
 const description = `搜尋文章分類`;
 
 const filtedPosts = await queryFetch(`query Category ($targetCategory: String!){
-  posts(filters: {category:{name:{eq:$targetCategory}}}){
+  posts(pagination: {limit: 9999} filters: {category:{name:{eq:$targetCategory}}}){
     data {
       attributes {
         themeColor

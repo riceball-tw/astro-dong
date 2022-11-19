@@ -9,7 +9,7 @@ const title = `搜尋文章標籤：${categoryName}`;
 const description = `搜尋文章標籤`;
 
   const filtedPosts = await queryFetch(`query Tag ($targetTag: String!){
-  posts(filters: {tags:{name:{eq:$targetTag}}}){
+  posts( pagination: {limit: 9999} filters: {tags:{name:{eq:$targetTag}}}){
     data {
       attributes {
         themeColor
