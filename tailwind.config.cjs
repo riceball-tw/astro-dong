@@ -111,20 +111,22 @@ module.exports = {
             "--tw-prose-invert-th-borders": theme("colors.primary[600]"),
             "--tw-prose-invert-td-borders": theme("colors.primary[600]"),
 
-
-            
             img: {
               borderRadius: theme("borderRadius.lg")
             },
             video: {
               borderRadius: theme("borderRadius.lg")
             },
+            blockquote: {
+              padding: "0"
+            },
             // Remove code's before and after backtick
-
             'blockquote p:first-of-type::before': true,
             'blockquote p:last-of-type::after': true,
             'code::before': false,
             'code::after': false,
+
+
 
           },
         },
@@ -134,7 +136,7 @@ module.exports = {
               textAlign: "center",
               paddingLeft: "none",
               border: "none",
-              padding: "4rem 2rem",
+              padding: "1rem",
               fontSize: "1.5rem",
               fontStyle: "normal",
               "&::before": {

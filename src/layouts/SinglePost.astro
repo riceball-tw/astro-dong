@@ -65,7 +65,7 @@ const recommendPost = Astro.props.post.attributes.recommendPost.data
           }
         </div>
       </header>
-      <div class="mx-8 md:mx-auto prose prose-lg max-w-none dark:prose-invert dark:prose-dark singlePost wrapper">
+      <div class="mx-8 md:mx-auto prose  md:prose-lg max-w-none dark:prose-invert dark:prose-dark singlePost wrapper">
         <slot />
       </div>
     </article>
@@ -91,11 +91,42 @@ const recommendPost = Astro.props.post.attributes.recommendPost.data
   grid-column: 2;
 }
 
- .wrapper p:has(> img){
-  margin: 0 auto
+.wrapper p:has(> img){
+  margin: 0 auto;
   width: 100%;
   grid-column: 1 / -1;
 }
+
+.raw-html-embed {
+  margin: 0 auto;
+  width: 100%;
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.raw-html-embed > video{
+  margin: 0 auto;
+}
+
+
+
+
+
+
+/* table {
+  width: auto;
+
+}
+
+.table {
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+  overflow-x: scroll;
+  grid-column: 1 / -1;
+} */
+
+
 
 p img {
   margin: 0 auto
