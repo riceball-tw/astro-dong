@@ -9,7 +9,7 @@ const title = `搜尋文章分類：${categoryName}`;
 const description = `搜尋文章分類`;
 
 const filtedPosts = await queryFetch(`query Category ($targetCategory: String!){
-  posts(pagination: {limit: 9999} filters: {category:{name:{eq:$targetCategory}}}){
+  posts(filters: {category:{name:{eq:$targetCategory}}}){
     data {
       attributes {
         themeColor
@@ -52,7 +52,7 @@ const filtedPosts = await queryFetch(`query Category ($targetCategory: String!){
 
 export async function getStaticPaths() {
   const categories = await queryFetch(`{
-	categories{
+	categories(pagination: {limit: 9999}){
     data{
       attributes{
         name
