@@ -2,8 +2,8 @@
 import Base from "@layouts/Base.astro";
 import HeroBanner from "@components/Banner/HeroBanner.astro";
 import Card from "@components/Card/Card.astro";
+import CardGallery from "@components/Card/CardGallery.astro";
 import PostCard from "@components/Card/PostCard.astro";
-import ButtonMinium from "@components/Button/ButtonMinimum.astro";
 import { queryFetch } from "@utils/queryFetch";
 
 const { heroBanner, info } = await queryFetch(`{
@@ -62,7 +62,7 @@ const posts = await queryFetch(`{
 
 <Base>
   <HeroBanner title={heroBanner} />
-  <section class="px-4">
+  <section class="px-4 md:pb-48 pb-24">
     <div
       class="grid lg:grid-cols-4 grid-cols-1 gap-y-4 md:gap-x-4 mt-8 md:mt-0"
     >
@@ -118,5 +118,28 @@ const posts = await queryFetch(`{
         })
       }
     </div>
+  </section>
+  <!-- Feedback Section -->
+  <section class="px-4 md:pb-48 pb-24">
+
+    <h2
+      class="dark:text-white text-black leading-normal lg:leading-normal text-3xl lg:text-4xl mb-20 md:h-auto "
+    >
+    由衷感謝各種形式的支持～<br>
+    反饋是我創作文章的動力之一🤗
+    </h2>
+    <CardGallery>
+      <div class="max-w-[600px]">
+        <Card>
+          <div class="flex flex-col">
+            <div class="md:text-2xl text-lg mb-16">
+              覺得部落格好可愛，配色跟排版都很舒服，而且資料也整理得清楚，很棒內～
+            </div>
+
+            <span class="opacity-60">由 六角 JS 直播同學 m_m 提供反饋</span>
+          </div>
+        </Card>
+      </div>
+    </CardGallery>
   </section>
 </Base>
