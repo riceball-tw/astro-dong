@@ -2,10 +2,11 @@
 const { title } = Astro.props;
 ---
 
-<section class="px-8 md:py-48 py-24 items-center justify-between">
+<section class="px-8 md:py-48 py-24 items-center justify-between bg-[url('/images/hero-banner/graident.svg')] bg-no-repeat bg-cover bg-right">
   <h1
-    class="dark:text-white text-black leading-normal lg:leading-normal text-3xl lg:text-6xl md:h-auto font-medium"
+    class="leading-normal lg:leading-normal text-3xl lg:text-6xl md:h-auto font-medium"
     set:html={title}
   >
   </h1>
 </section>
+

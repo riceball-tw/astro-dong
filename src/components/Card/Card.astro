@@ -3,6 +3,7 @@ const {themeColor, themeColorBg} = Astro.props
 const cardBody = themeColor ? themeColor + 40 : ""
 const cardBorder = themeColor ? themeColor + 40 : ""
 const cardBg = themeColorBg ? themeColorBg : ""
+const cardshadow = themeColor ? themeColor + 20 : "rgb(0 0 0 / 0.05)"
 ---
 
   <div
@@ -16,18 +17,20 @@ const cardBg = themeColorBg ? themeColorBg : ""
     transition
     `
   > 
-    <div class="card rounded-lg p-6">
+    <div class="card rounded-lg p-6 transition-all">
         <slot />
     </div>
   </div>
 
 
-<style define:vars={{ cardBody, cardBorder, cardBg }}>
+<style define:vars={{ cardBody, cardBorder, cardBg, cardshadow }}>
   .card {
     background-color: var(--cardBg)
+    
   }
   .card:hover {
     background-color: var(--cardBody);
     border-color: var(--cardBorder);
+    box-shadow: 0 0 30px 10px var(--cardshadow);
   }
 </style>
