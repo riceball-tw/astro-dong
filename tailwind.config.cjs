@@ -150,7 +150,7 @@ module.exports = {
               },
             },
             table: {
-              display: "inline-block",
+              display: "block",
               padding: theme("spacing.8"),
               overflow: "auto",
               whiteSpace: "nowrap",
@@ -165,7 +165,7 @@ module.exports = {
               padding: theme("spacing.4"),
               borderBottomRightRadius: theme("borderRadius.lg"),
               borderBottomLeftRadius: theme("borderRadius.lg"),
-              marginTop: "-12px",
+              marginTop: "0",
               backgroundColor: theme("colors.primary[100]"),
               borderColor: theme("colors.primary[200]"),
               "&:hover": {
